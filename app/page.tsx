@@ -283,9 +283,9 @@ export default function Home() {
               <div className="relative rounded-3xl overflow-hidden aspect-square shadow-lg">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=800&q=80"
-                  alt="Person embracing hope and new beginnings at sunrise"
-                  className="w-full h-full object-cover"
+                  src="/hope-path.png"
+                  alt="Person walking toward the light on a golden sunset path"
+                  className="w-full h-full object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-amber-900/50 via-transparent to-transparent" />
                 <p
@@ -763,8 +763,8 @@ export default function Home() {
               <div className="rounded-3xl overflow-hidden shadow-md aspect-[3/4] max-w-sm mx-auto w-full">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
-                  alt="Warm, welcoming doctor-patient conversation"
+                  src="/consultation.png"
+                  alt="Warm, supportive one-on-one conversation"
                   className="w-full h-full object-cover"
                 />
               </div>
