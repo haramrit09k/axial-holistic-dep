@@ -231,30 +231,21 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-16 items-center">
-              {/* Left: image placeholder with sunrise illustration */}
-              <div className="relative rounded-3xl overflow-hidden aspect-square bg-gradient-to-br from-indigo-100 via-purple-50 to-amber-100 flex items-center justify-center">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-200/60 via-purple-100/40 to-amber-200/60" />
-                <div className="relative z-10 text-center px-8">
-                  <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-b from-amber-300 to-amber-500 flex items-center justify-center shadow-lg shadow-amber-200">
-                    <svg
-                      width="40"
-                      height="40"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="white"
-                      strokeWidth="1.5"
-                    >
-                      <circle cx="12" cy="12" r="4" />
-                      <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-                    </svg>
-                  </div>
-                  <p
-                    className="text-stone-700 text-lg font-medium"
-                    style={{ fontFamily: "var(--font-playfair)" }}
-                  >
-                    Light is waiting on the other side.
-                  </p>
-                </div>
+              {/* Left: hopeful lifestyle photo */}
+              <div className="relative rounded-3xl overflow-hidden aspect-square shadow-lg">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=800&q=80"
+                  alt="Person embracing hope and new beginnings at sunrise"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-amber-900/50 via-transparent to-transparent" />
+                <p
+                  className="absolute bottom-6 left-6 right-6 text-white text-lg font-medium drop-shadow-lg"
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
+                  Light is waiting on the other side.
+                </p>
               </div>
 
               {/* Right: content */}
@@ -527,6 +518,40 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ─── LIFE PHOTO STRIP ─── */}
+        <section className="py-16 px-6 bg-amber-50">
+          <div className="max-w-6xl mx-auto">
+            <p
+              className="text-center text-xl sm:text-2xl font-medium text-stone-700 mb-10 max-w-2xl mx-auto"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Because life on the other side of depression is{" "}
+              <span className="text-amber-700 italic">worth fighting for.</span>
+            </p>
+            <div className="grid grid-cols-3 gap-4">
+              {[
+                {
+                  src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80",
+                  alt: "Friends laughing together outdoors",
+                },
+                {
+                  src: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80",
+                  alt: "Woman smiling with joy in natural light",
+                },
+                {
+                  src: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=600&q=80",
+                  alt: "Sunlight through trees on a peaceful path",
+                },
+              ].map(({ src, alt }) => (
+                <div key={alt} className="rounded-2xl overflow-hidden aspect-[4/3] shadow-sm">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={src} alt={alt} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ─── OUR APPROACH ─── */}
         <section id="approach" className="py-24 px-6 bg-stone-900">
           <div className="max-w-6xl mx-auto">
@@ -655,7 +680,7 @@ export default function Home() {
 
         {/* ─── WHAT TO EXPECT ─── */}
         <section id="what-to-expect" className="py-24 px-6 bg-[#fffbf5]">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <p className="text-amber-600 text-sm tracking-widest uppercase font-medium mb-4">
                 What to Expect
@@ -668,6 +693,18 @@ export default function Home() {
               </h2>
             </div>
 
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              {/* Photo */}
+              <div className="rounded-3xl overflow-hidden shadow-md aspect-[3/4] max-w-sm mx-auto w-full">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+                  alt="Warm, welcoming doctor-patient conversation"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              <div>
             <div className="relative">
               {/* Vertical line */}
               <div className="absolute left-6 top-0 bottom-0 w-px bg-amber-200 hidden sm:block" />
@@ -716,8 +753,10 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+              </div>
             </div>
           </div>
+        </div>
         </section>
 
         {/* ─── WARM BANNER ─── */}
