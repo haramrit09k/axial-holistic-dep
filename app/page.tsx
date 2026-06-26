@@ -96,7 +96,7 @@ export default function Home() {
               About Us
             </a>
             <a href="#doctor" className="hover:text-amber-800 transition-colors">
-              Dr. Parmar
+              Dr. Ankit Parmar
             </a>
             <a href="#testimonials" className="hover:text-amber-800 transition-colors">
               Stories
@@ -131,7 +131,7 @@ export default function Home() {
               About Us
             </a>
             <a href="#doctor" onClick={() => setMenuOpen(false)}>
-              Dr. Parmar
+              Dr. Ankit Parmar
             </a>
             <a href="#testimonials" onClick={() => setMenuOpen(false)}>
               Stories
@@ -380,14 +380,14 @@ export default function Home() {
                   className="text-3xl sm:text-4xl font-semibold text-stone-900 mb-2"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
-                  Dr. Parmar
+                  Dr. Ankit Parmar
                 </h2>
                 <p className="text-amber-700 font-medium mb-6">
                   Who has Empowered 5,000+ Patients to Reclaim Their Lives From Depression
                 </p>
                 <div className="space-y-4 text-stone-600 leading-relaxed">
                   <p>
-                    Dr. Parmar is a triple board-certified psychiatrist in
+                    Dr. Ankit Parmar is a triple board-certified psychiatrist in
                     General Psychiatry, Child &amp; Adolescent Psychiatry, and
                     Forensic Psychiatry. With over 10 years of experience, he
                     has helped more than 5,000 patients overcome depression and
@@ -430,7 +430,7 @@ export default function Home() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/dr-parmar.jpeg"
-                    alt="Dr. Parmar"
+                    alt="Dr. Ankit Parmar"
                     className="w-full h-full object-cover object-top"
                   />
                 </div>
@@ -1056,7 +1056,7 @@ export default function Home() {
                 <div className="space-y-2">
                   {[
                     ["About Us", "#about"],
-                    ["Dr. Parmar", "#doctor"],
+                    ["Dr. Ankit Parmar", "#doctor"],
                     ["Stories", "#testimonials"],
                     ["Our Approach", "#approach"],
                     ["What to Expect", "#what-to-expect"],
