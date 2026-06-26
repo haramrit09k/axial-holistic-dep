@@ -431,7 +431,7 @@ export default function Home() {
                     {[
                       { name: "Medicare", file: "/logos/medicare.png" },
                       { name: "Aetna", file: "/logos/aetna.webp" },
-                      { name: "Blue Cross Blue Shield", file: "/logos/bcbs.jpeg" },
+                      { name: "Blue Cross Blue Shield", file: "/logos/bcbs.png" },
                       { name: "Cigna", file: "/logos/cigna.png" },
                       { name: "UnitedHealthcare", file: "/logos/uhc.png" },
                     ].map(({ name, file }) => (
