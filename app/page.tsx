@@ -49,11 +49,14 @@ export default function Home() {
             <a href="#what-to-expect" className="hover:text-amber-800 transition-colors">
               What to Expect
             </a>
+            <a href="#testimonials" className="hover:text-amber-800 transition-colors">
+              Stories
+            </a>
             <a
               href="#contact"
               className="bg-amber-600 text-white px-5 py-2 rounded-full text-sm hover:bg-amber-700 transition-colors"
             >
-              Schedule a Conversation
+              Book Appointment
             </a>
           </div>
 
@@ -81,12 +84,15 @@ export default function Home() {
             <a href="#what-to-expect" onClick={() => setMenuOpen(false)}>
               What to Expect
             </a>
+            <a href="#testimonials" onClick={() => setMenuOpen(false)}>
+              Stories
+            </a>
             <a
               href="#contact"
               className="bg-amber-600 text-white px-5 py-2 rounded-full text-center"
               onClick={() => setMenuOpen(false)}
             >
-              Schedule a Conversation
+              Book Appointment
             </a>
           </div>
         )}
@@ -360,27 +366,31 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
                 <p className="text-amber-600 text-sm tracking-widest uppercase font-medium mb-4">
-                  Your Physician
+                  Meet Your Physician
                 </p>
                 <h2
-                  className="text-3xl sm:text-4xl font-semibold text-stone-900 mb-6"
+                  className="text-3xl sm:text-4xl font-semibold text-stone-900 mb-2"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
-                  Led by Someone Who
-                  <br />
-                  <span className="text-amber-700">Chose Not to Give Up</span>
+                  Dr. Parmar
                 </h2>
+                <p className="text-amber-700 font-medium mb-6">
+                  Who has Empowered 5,000+ Patients to Reclaim Their Lives From Depression
+                </p>
                 <div className="space-y-4 text-stone-600 leading-relaxed">
                   <p>
-                    Our clinic is led by a triple board-certified psychiatrist
-                    with over a decade of experience in General Psychiatry,
-                    Child &amp; Adolescent Psychiatry, and Forensic Psychiatry.
+                    Dr. Parmar is a triple board-certified psychiatrist in
+                    General Psychiatry, Child &amp; Adolescent Psychiatry, and
+                    Forensic Psychiatry. With over 10 years of experience, he
+                    has helped more than 5,000 patients overcome depression and
+                    reclaim their lives.
                   </p>
                   <p>
-                    Having worked with more than 5,000 patients, our physician
-                    founded Axial with a single conviction: that the right care
-                    — thoughtful, thorough, and deeply personal — can change
-                    lives, even when nothing else has.
+                    He completed his residency at Texas Tech University Health
+                    Sciences Center and fellowships at UT Southwestern Medical
+                    Center. Dr. Parmar combines medications, therapy, and
+                    advanced treatments with a holistic approach — guiding
+                    patients toward both recovery and long-term wellness.
                   </p>
                   <p>
                     We treat patients of all ages starting from 12, and we work
@@ -406,6 +416,21 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Doctor photo */}
+              <div className="flex flex-col gap-6">
+                <div className="rounded-3xl overflow-hidden shadow-lg aspect-[3/4] max-w-sm mx-auto w-full">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/dr-parmar.jpeg"
+                    alt="Dr. Parmar"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Insurance & compassion cards */}
+            <div className="mt-16 grid md:grid-cols-2 gap-6">
               {/* Insurance callout */}
               <div className="space-y-6">
                 <div className="bg-white rounded-3xl p-8 border border-amber-100 shadow-sm">
@@ -553,6 +578,73 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ─── TESTIMONIALS ─── */}
+        <section id="testimonials" className="py-24 px-6 bg-[#fffbf5]">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <p className="text-amber-600 text-sm tracking-widest uppercase font-medium mb-4">
+                Patient Stories
+              </p>
+              <h2
+                className="text-3xl sm:text-4xl font-semibold text-stone-900"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                Stories of Healing &amp; Hope
+              </h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  name: "Hannah Arey",
+                  stars: 5,
+                  text: "Dr. Parmar is very kind, patient, professional, and understanding. I can tell he truly cares about his patients. Trusting someone with your mental health is a hard thing to do, but his demeanor makes it very easy to talk about your struggles.",
+                },
+                {
+                  name: "Mark Cepeda",
+                  stars: 5,
+                  text: "Over the last 4 months of ups and downs, this doctor has been navigating the complexities of my son's mental health issues. I am forever grateful and am blessed that this is who we ended up with as our Dr. for my child.",
+                },
+                {
+                  name: "LaNe sha B",
+                  stars: 4,
+                  text: "Dr. Parmar's holistic approach and dedication have made a significant difference in my treatment.",
+                },
+                {
+                  name: "Celina Navarro",
+                  stars: 5,
+                  text: "I am eternally grateful for having found such a professional psychiatrist and above all a great human being! Highly recommend, thanks Dr. Parmar, for your attention to my son!",
+                },
+              ].map(({ name, stars, text }) => (
+                <div
+                  key={name}
+                  className="bg-white rounded-2xl p-6 border border-amber-100 shadow-sm flex flex-col gap-4"
+                >
+                  <div className="flex gap-1">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <svg
+                        key={i}
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill={i < stars ? "#f59e0b" : "none"}
+                        stroke={i < stars ? "#f59e0b" : "#d1d5db"}
+                        strokeWidth="1.5"
+                      >
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-stone-600 text-sm leading-relaxed flex-1 italic">
+                    &ldquo;{text}&rdquo;
+                  </p>
+                  <p className="text-stone-900 font-semibold text-sm">{name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ─── CONTACT ─── */}
         <section id="contact" className="py-24 px-6 bg-stone-900">
           <div className="max-w-6xl mx-auto">
@@ -585,7 +677,7 @@ export default function Home() {
                         </svg>
                       ),
                       label: "Phone",
-                      value: "[Phone number coming soon]",
+                      value: "972-478-0152",
                     },
                     {
                       icon: (
@@ -595,7 +687,7 @@ export default function Home() {
                         </svg>
                       ),
                       label: "Email",
-                      value: "[Email address coming soon]",
+                      value: "treatdepression@axialtms.com",
                     },
                     {
                       icon: (
@@ -605,7 +697,7 @@ export default function Home() {
                         </svg>
                       ),
                       label: "Location",
-                      value: "[Address coming soon]",
+                      value: "6730 Horizon Rd, STE C, Rockwall, TX 75032",
                     },
                   ].map(({ icon, label, value }) => (
                     <div key={label} className="flex items-start gap-4">
@@ -767,6 +859,7 @@ export default function Home() {
                     ["About Us", "#about"],
                     ["Our Approach", "#approach"],
                     ["What to Expect", "#what-to-expect"],
+                    ["Stories", "#testimonials"],
                     ["Contact", "#contact"],
                   ].map(([label, href]) => (
                     <a
