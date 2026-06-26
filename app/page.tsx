@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import InsuranceLogo from "@/components/InsuranceLogo";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -431,25 +431,12 @@ export default function Home() {
                     {[
                       { name: "Medicare", domain: "medicare.gov" },
                       { name: "Aetna", domain: "aetna.com" },
-                      { name: "Blue Cross Blue Shield", domain: "bcbs.com" },
+                      { name: "Blue Cross", domain: "bcbsa.com" },
                       { name: "Cigna", domain: "cigna.com" },
                       { name: "UnitedHealthcare", domain: "uhc.com" },
                       { name: "Humana", domain: "humana.com" },
                     ].map(({ name, domain }) => (
-                      <div
-                        key={name}
-                        className="bg-white border border-stone-100 rounded-xl px-3 py-2 flex items-center justify-center shadow-sm"
-                        title={name}
-                      >
-                        <Image
-                          src={`https://logo.clearbit.com/${domain}`}
-                          alt={name}
-                          width={72}
-                          height={28}
-                          className="object-contain h-7 w-auto"
-                          unoptimized
-                        />
-                      </div>
+                      <InsuranceLogo key={name} name={name} domain={domain} />
                     ))}
                     <span className="text-stone-400 text-sm italic font-medium">
                       & many more
