@@ -52,6 +52,22 @@ export default function Home() {
     { name: "UnitedHealthcare", file: "/logos/uhc.png" },
   ];
 
+  const prevTestimonial = () =>
+    setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  const nextTestimonial = () =>
+    setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+
+  const handleSwipeStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    (e.currentTarget as HTMLElement).dataset.swipeX = String(touch.clientX);
+  };
+  const handleSwipeEnd = (e: React.TouchEvent) => {
+    const startX = Number((e.currentTarget as HTMLElement).dataset.swipeX ?? 0);
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 40) nextTestimonial();
+    else if (endX - startX > 40) prevTestimonial();
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
@@ -617,34 +633,62 @@ export default function Home() {
               </h2>
             </div>
 
-            {/* Card */}
-            <div className="bg-white rounded-3xl p-8 sm:p-10 border border-amber-100 shadow-sm min-h-[220px] flex flex-col justify-between">
-              <div>
-                <div className="flex gap-1 mb-5">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <svg
-                      key={i}
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill={i < testimonials[activeTestimonial].stars ? "#f59e0b" : "none"}
-                      stroke={i < testimonials[activeTestimonial].stars ? "#f59e0b" : "#d1d5db"}
-                      strokeWidth="1.5"
-                    >
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                  ))}
+            {/* Card with arrow buttons */}
+            <div className="relative">
+              {/* Prev arrow */}
+              <button
+                onClick={prevTestimonial}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 sm:-translate-x-10 w-10 h-10 rounded-full bg-white border border-amber-200 shadow-sm flex items-center justify-center text-amber-600 hover:bg-amber-50 transition-colors z-10"
+                aria-label="Previous testimonial"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+
+              {/* Next arrow */}
+              <button
+                onClick={nextTestimonial}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 sm:translate-x-10 w-10 h-10 rounded-full bg-white border border-amber-200 shadow-sm flex items-center justify-center text-amber-600 hover:bg-amber-50 transition-colors z-10"
+                aria-label="Next testimonial"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+
+              <div
+                className="bg-white rounded-3xl p-8 sm:p-10 border border-amber-100 shadow-sm min-h-[220px] flex flex-col justify-between cursor-grab active:cursor-grabbing"
+                onTouchStart={handleSwipeStart}
+                onTouchEnd={handleSwipeEnd}
+              >
+                <div>
+                  <div className="flex gap-1 mb-5">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <svg
+                        key={i}
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill={i < testimonials[activeTestimonial].stars ? "#f59e0b" : "none"}
+                        stroke={i < testimonials[activeTestimonial].stars ? "#f59e0b" : "#d1d5db"}
+                        strokeWidth="1.5"
+                      >
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p
+                    className="text-stone-700 text-lg leading-relaxed italic mb-6"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    &ldquo;{testimonials[activeTestimonial].text}&rdquo;
+                  </p>
                 </div>
-                <p
-                  className="text-stone-700 text-lg leading-relaxed italic mb-6"
-                  style={{ fontFamily: "var(--font-playfair)" }}
-                >
-                  &ldquo;{testimonials[activeTestimonial].text}&rdquo;
+                <p className="text-stone-900 font-semibold">
+                  — {testimonials[activeTestimonial].name}
                 </p>
               </div>
-              <p className="text-stone-900 font-semibold">
-                — {testimonials[activeTestimonial].name}
-              </p>
             </div>
 
             {/* Dot navigation */}
