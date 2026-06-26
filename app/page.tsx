@@ -95,17 +95,14 @@ export default function Home() {
             <a href="#about" className="hover:text-amber-800 transition-colors">
               About Us
             </a>
-            <a
-              href="#approach"
-              className="hover:text-amber-800 transition-colors"
-            >
-              Our Approach
-            </a>
-            <a href="#what-to-expect" className="hover:text-amber-800 transition-colors">
-              What to Expect
+            <a href="#doctor" className="hover:text-amber-800 transition-colors">
+              Dr. Parmar
             </a>
             <a href="#testimonials" className="hover:text-amber-800 transition-colors">
               Stories
+            </a>
+            <a href="#approach" className="hover:text-amber-800 transition-colors">
+              Our Approach
             </a>
             <a
               href="#contact"
@@ -133,14 +130,14 @@ export default function Home() {
             <a href="#about" onClick={() => setMenuOpen(false)}>
               About Us
             </a>
-            <a href="#approach" onClick={() => setMenuOpen(false)}>
-              Our Approach
-            </a>
-            <a href="#what-to-expect" onClick={() => setMenuOpen(false)}>
-              What to Expect
+            <a href="#doctor" onClick={() => setMenuOpen(false)}>
+              Dr. Parmar
             </a>
             <a href="#testimonials" onClick={() => setMenuOpen(false)}>
               Stories
+            </a>
+            <a href="#approach" onClick={() => setMenuOpen(false)}>
+              Our Approach
             </a>
             <a
               href="#contact"
@@ -216,25 +213,23 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── MISSION STATEMENT ─── */}
-        <section className="bg-amber-50 py-20 px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <p
-              className="text-2xl sm:text-3xl md:text-4xl font-medium text-stone-800 leading-relaxed"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
-              &ldquo;We believe every person with treatment-resistant depression
-              deserves a care team that{" "}
-              <span className="text-amber-700 italic">never gives up.</span>
-              &rdquo;
-            </p>
-            <div className="mt-8 h-px w-16 bg-amber-400 mx-auto" />
-          </div>
-        </section>
-
         {/* ─── WHO WE HELP ─── */}
         <section id="about" className="py-24 px-6 bg-[#fffbf5]">
           <div className="max-w-6xl mx-auto">
+            {/* Mission pull-quote integrated at top */}
+            <div className="text-center mb-16">
+              <p
+                className="text-2xl sm:text-3xl font-medium text-stone-800 leading-relaxed max-w-3xl mx-auto"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                &ldquo;We believe every person with treatment-resistant depression
+                deserves a care team that{" "}
+                <span className="text-amber-700 italic">never gives up.</span>
+                &rdquo;
+              </p>
+              <div className="mt-6 h-px w-16 bg-amber-400 mx-auto" />
+            </div>
+
             <div className="grid md:grid-cols-2 gap-16 items-center">
               {/* Left: image placeholder with sunrise illustration */}
               <div className="relative rounded-3xl overflow-hidden aspect-square bg-gradient-to-br from-indigo-100 via-purple-50 to-amber-100 flex items-center justify-center">
@@ -325,98 +320,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── OUR APPROACH ─── */}
-        <section id="approach" className="py-24 px-6 bg-stone-900">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <p className="text-amber-400 text-sm tracking-widest uppercase font-medium mb-4">
-                Our Approach
-              </p>
-              <h2
-                className="text-3xl sm:text-4xl font-semibold text-white mb-4"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                Holistic. Personal. Yours.
-              </h2>
-              <p className="text-stone-400 max-w-xl mx-auto">
-                No two people experience depression the same way. Your care plan
-                shouldn&apos;t be the same either.
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                {
-                  step: "01",
-                  title: "We Listen First",
-                  body: "We start with you — your history, your life, what you've already tried, and what matters most to you. Nothing is assumed.",
-                  icon: (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M12 2a10 10 0 0 1 10 10c0 3.87-2.19 7.22-5.4 8.9L15 22H9l-1.6-1.1A10 10 0 0 1 2 12 10 10 0 0 1 12 2z" />
-                      <path d="M9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0" />
-                    </svg>
-                  ),
-                },
-                {
-                  step: "02",
-                  title: "We Look at the Whole Picture",
-                  body: "Depression is rarely just one thing. We explore biological, psychological, and lifestyle factors to understand what's driving yours.",
-                  icon: (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M12 6v6l4 2" />
-                    </svg>
-                  ),
-                },
-                {
-                  step: "03",
-                  title: "We Build Your Plan",
-                  body: "Together, we design a treatment approach built around your unique situation — not a protocol, not a one-size-fits-all answer.",
-                  icon: (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M9 11l3 3L22 4" />
-                      <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-                    </svg>
-                  ),
-                },
-                {
-                  step: "04",
-                  title: "We Walk With You",
-                  body: "Recovery is a journey, not a single appointment. We stay by your side — adjusting, supporting, and celebrating every step forward.",
-                  icon: (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                      <circle cx="9" cy="7" r="4" />
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-                    </svg>
-                  ),
-                },
-              ].map(({ step, title, body, icon }) => (
-                <div
-                  key={step}
-                  className="bg-stone-800 rounded-2xl p-6 border border-stone-700 hover:border-amber-600/50 transition-colors group"
-                >
-                  <div className="text-amber-400 mb-4 group-hover:text-amber-300 transition-colors">
-                    {icon}
-                  </div>
-                  <p className="text-amber-600 text-xs font-bold tracking-wider mb-2">
-                    {step}
-                  </p>
-                  <h3
-                    className="text-white font-semibold text-lg mb-3"
-                    style={{ fontFamily: "var(--font-playfair)" }}
-                  >
-                    {title}
-                  </h3>
-                  <p className="text-stone-400 text-sm leading-relaxed">{body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* ─── ABOUT THE DOCTOR ─── */}
-        <section className="py-24 px-6 bg-amber-50">
+        <section id="doctor" className="py-24 px-6 bg-amber-50">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
@@ -531,93 +436,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── WHAT TO EXPECT ─── */}
-        <section id="what-to-expect" className="py-24 px-6 bg-[#fffbf5]">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <p className="text-amber-600 text-sm tracking-widest uppercase font-medium mb-4">
-                What to Expect
-              </p>
-              <h2
-                className="text-3xl sm:text-4xl font-semibold text-stone-900"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                Your First Steps With Us
-              </h2>
-            </div>
-
-            <div className="relative">
-              {/* Vertical line */}
-              <div className="absolute left-6 top-0 bottom-0 w-px bg-amber-200 hidden sm:block" />
-
-              <div className="space-y-10">
-                {[
-                  {
-                    num: "1",
-                    title: "Reach Out",
-                    body: "Send us a message or give us a call. There's no pressure, no commitment — just a conversation about where you are and whether we might be a good fit.",
-                  },
-                  {
-                    num: "2",
-                    title: "Your First Appointment",
-                    body: "We'll spend time truly getting to know you — your history, your experience with depression, and your goals. This is the foundation of everything we do.",
-                  },
-                  {
-                    num: "3",
-                    title: "A Plan Built for You",
-                    body: "Based on our evaluation, we'll discuss what options we believe make sense for your specific situation and walk you through every possibility together.",
-                  },
-                  {
-                    num: "4",
-                    title: "Ongoing Partnership",
-                    body: "Your care doesn't end at a single appointment. We check in, we adjust, and we stay with you for as long as you need us.",
-                  },
-                ].map(({ num, title, body }) => (
-                  <div
-                    key={num}
-                    className="sm:pl-16 relative flex gap-6 sm:block"
-                  >
-                    <div className="relative z-10 sm:absolute sm:left-0 sm:top-1 flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-amber-200">
-                        {num}
-                      </div>
-                    </div>
-                    <div className="pb-2">
-                      <h3
-                        className="text-xl font-semibold text-stone-900 mb-2"
-                        style={{ fontFamily: "var(--font-playfair)" }}
-                      >
-                        {title}
-                      </h3>
-                      <p className="text-stone-500 leading-relaxed">{body}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ─── WARM BANNER ─── */}
-        <section className="py-20 px-6 bg-gradient-to-r from-amber-500 to-orange-400">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2
-              className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white mb-6 leading-tight"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
-              Your story isn&apos;t over.
-              <br />
-              It&apos;s just waiting for the right chapter.
-            </h2>
-            <a
-              href="#contact"
-              className="inline-block bg-white text-amber-700 font-semibold px-8 py-4 rounded-full hover:bg-amber-50 transition-colors shadow-lg"
-            >
-              Begin Your Journey
-            </a>
-          </div>
-        </section>
-
         {/* ─── TESTIMONIALS CAROUSEL ─── */}
         <section id="testimonials" className="py-24 px-6 bg-[#fffbf5]">
           <div className="max-w-2xl mx-auto">
@@ -709,6 +527,96 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ─── OUR APPROACH ─── */}
+        <section id="approach" className="py-24 px-6 bg-stone-900">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <p className="text-amber-400 text-sm tracking-widest uppercase font-medium mb-4">
+                Our Approach
+              </p>
+              <h2
+                className="text-3xl sm:text-4xl font-semibold text-white mb-4"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                Holistic. Personal. Yours.
+              </h2>
+              <p className="text-stone-400 max-w-xl mx-auto">
+                No two people experience depression the same way. Your care plan
+                shouldn&apos;t be the same either.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  step: "01",
+                  title: "We Listen First",
+                  body: "We start with you — your history, your life, what you've already tried, and what matters most to you. Nothing is assumed.",
+                  icon: (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M12 2a10 10 0 0 1 10 10c0 3.87-2.19 7.22-5.4 8.9L15 22H9l-1.6-1.1A10 10 0 0 1 2 12 10 10 0 0 1 12 2z" />
+                      <path d="M9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0" />
+                    </svg>
+                  ),
+                },
+                {
+                  step: "02",
+                  title: "We Look at the Whole Picture",
+                  body: "Depression is rarely just one thing. We explore biological, psychological, and lifestyle factors to understand what's driving yours.",
+                  icon: (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
+                    </svg>
+                  ),
+                },
+                {
+                  step: "03",
+                  title: "We Build Your Plan",
+                  body: "Together, we design a treatment approach built around your unique situation — not a protocol, not a one-size-fits-all answer.",
+                  icon: (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M9 11l3 3L22 4" />
+                      <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                    </svg>
+                  ),
+                },
+                {
+                  step: "04",
+                  title: "We Walk With You",
+                  body: "Recovery is a journey, not a single appointment. We stay by your side — adjusting, supporting, and celebrating every step forward.",
+                  icon: (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                  ),
+                },
+              ].map(({ step, title, body, icon }) => (
+                <div
+                  key={step}
+                  className="bg-stone-800 rounded-2xl p-6 border border-stone-700 hover:border-amber-600/50 transition-colors group"
+                >
+                  <div className="text-amber-400 mb-4 group-hover:text-amber-300 transition-colors">
+                    {icon}
+                  </div>
+                  <p className="text-amber-600 text-xs font-bold tracking-wider mb-2">
+                    {step}
+                  </p>
+                  <h3
+                    className="text-white font-semibold text-lg mb-3"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    {title}
+                  </h3>
+                  <p className="text-stone-400 text-sm leading-relaxed">{body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ─── INSURANCE MARQUEE ─── */}
         <section className="py-16 px-6 bg-amber-50">
           <div className="max-w-3xl mx-auto text-center mb-10">
@@ -742,6 +650,93 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ─── WHAT TO EXPECT ─── */}
+        <section id="what-to-expect" className="py-24 px-6 bg-[#fffbf5]">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <p className="text-amber-600 text-sm tracking-widest uppercase font-medium mb-4">
+                What to Expect
+              </p>
+              <h2
+                className="text-3xl sm:text-4xl font-semibold text-stone-900"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                Your First Steps With Us
+              </h2>
+            </div>
+
+            <div className="relative">
+              {/* Vertical line */}
+              <div className="absolute left-6 top-0 bottom-0 w-px bg-amber-200 hidden sm:block" />
+
+              <div className="space-y-10">
+                {[
+                  {
+                    num: "1",
+                    title: "Reach Out",
+                    body: "Send us a message or give us a call. There's no pressure, no commitment — just a conversation about where you are and whether we might be a good fit.",
+                  },
+                  {
+                    num: "2",
+                    title: "Your First Appointment",
+                    body: "We'll spend time truly getting to know you — your history, your experience with depression, and your goals. This is the foundation of everything we do.",
+                  },
+                  {
+                    num: "3",
+                    title: "A Plan Built for You",
+                    body: "Based on our evaluation, we'll discuss what options we believe make sense for your specific situation and walk you through every possibility together.",
+                  },
+                  {
+                    num: "4",
+                    title: "Ongoing Partnership",
+                    body: "Your care doesn't end at a single appointment. We check in, we adjust, and we stay with you for as long as you need us.",
+                  },
+                ].map(({ num, title, body }) => (
+                  <div
+                    key={num}
+                    className="sm:pl-16 relative flex gap-6 sm:block"
+                  >
+                    <div className="relative z-10 sm:absolute sm:left-0 sm:top-1 flex-shrink-0">
+                      <div className="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-amber-200">
+                        {num}
+                      </div>
+                    </div>
+                    <div className="pb-2">
+                      <h3
+                        className="text-xl font-semibold text-stone-900 mb-2"
+                        style={{ fontFamily: "var(--font-playfair)" }}
+                      >
+                        {title}
+                      </h3>
+                      <p className="text-stone-500 leading-relaxed">{body}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── WARM BANNER ─── */}
+        <section className="py-20 px-6 bg-gradient-to-r from-amber-500 to-orange-400">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2
+              className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white mb-6 leading-tight"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Your story isn&apos;t over.
+              <br />
+              It&apos;s just waiting for the right chapter.
+            </h2>
+            <a
+              href="#contact"
+              className="inline-block bg-white text-amber-700 font-semibold px-8 py-4 rounded-full hover:bg-amber-50 transition-colors shadow-lg"
+            >
+              Begin Your Journey
+            </a>
           </div>
         </section>
 
@@ -957,9 +952,10 @@ export default function Home() {
                 <div className="space-y-2">
                   {[
                     ["About Us", "#about"],
+                    ["Dr. Parmar", "#doctor"],
+                    ["Stories", "#testimonials"],
                     ["Our Approach", "#approach"],
                     ["What to Expect", "#what-to-expect"],
-                    ["Stories", "#testimonials"],
                     ["Contact", "#contact"],
                   ].map(([label, href]) => (
                     <a
