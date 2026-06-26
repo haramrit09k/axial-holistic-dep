@@ -61,3 +61,18 @@ body {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* Scroll-triggered entrance animations — only active after JS initialises */
+html.js-anim [data-animate] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+html.js-anim [data-animate].in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+html.js-anim [data-animate][data-delay="100"] { transition-delay: 0.1s; }
+html.js-anim [data-animate][data-delay="200"] { transition-delay: 0.2s; }
+html.js-anim [data-animate][data-delay="300"] { transition-delay: 0.3s; }
+html.js-anim [data-animate][data-delay="400"] { transition-delay: 0.4s; }

@@ -1,18 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import InsuranceLogo from "@/components/InsuranceLogo";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [showStickyBtn, setShowStickyBtn] = useState(false);
 
   const testimonials = [
     {
@@ -26,23 +20,11 @@ export default function Home() {
       text: "Over the last 4 months of ups and downs, this doctor has been navigating the complexities of my son's mental health issues. I am forever grateful and am blessed that this is who we ended up with as our Dr. for my child.",
     },
     {
-      name: "LaNe sha B",
-      stars: 4,
-      text: "Dr. Parmar's holistic approach and dedication have made a significant difference in my treatment.",
-    },
-    {
       name: "Celina Navarro",
       stars: 5,
       text: "I am eternally grateful for having found such a professional psychiatrist and above all a great human being! Highly recommend, thanks Dr. Parmar, for your attention to my son!",
     },
   ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [testimonials.length]);
 
   const insuranceLogos = [
     { name: "Medicare", file: "/logos/medicare.png" },
@@ -52,21 +34,32 @@ export default function Home() {
     { name: "UnitedHealthcare", file: "/logos/uhc.png" },
   ];
 
-  const prevTestimonial = () =>
-    setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  const nextTestimonial = () =>
-    setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+  // Sticky CTA appears after scrolling past the hero
+  useEffect(() => {
+    const handleScroll = () => setShowStickyBtn(window.scrollY > window.innerHeight * 0.8);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const handleSwipeStart = (e: React.TouchEvent) => {
-    const touch = e.touches[0];
-    (e.currentTarget as HTMLElement).dataset.swipeX = String(touch.clientX);
-  };
-  const handleSwipeEnd = (e: React.TouchEvent) => {
-    const startX = Number((e.currentTarget as HTMLElement).dataset.swipeX ?? 0);
-    const endX = e.changedTouches[0].clientX;
-    if (startX - endX > 40) nextTestimonial();
-    else if (endX - startX > 40) prevTestimonial();
-  };
+  // Scroll-triggered entrance animations
+  useEffect(() => {
+    document.documentElement.classList.add("js-anim");
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll("[data-animate]").forEach((el) => observer.observe(el));
+    return () => {
+      observer.disconnect();
+      document.documentElement.classList.remove("js-anim");
+    };
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,75 +68,53 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
+
+      {/* ─── STICKY FLOATING CTA ─── */}
+      <a
+        href="#contact"
+        className={`fixed bottom-6 right-6 z-50 bg-amber-500 hover:bg-amber-400 text-white font-semibold px-6 py-3.5 rounded-full shadow-xl shadow-amber-900/40 text-sm transition-all duration-300 ${
+          showStickyBtn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+        }`}
+      >
+        Book a Free Call →
+      </a>
+
       {/* ─── NAVBAR ─── */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#fffbf5]/90 backdrop-blur-md border-b border-amber-100">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <a href="#" className="flex flex-col leading-tight">
-            <span
-              className="text-lg font-semibold text-amber-900"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
+            <span className="text-lg font-semibold text-amber-900" style={{ fontFamily: "var(--font-playfair)" }}>
               Axial Holistic
             </span>
-            <span className="text-xs tracking-widest text-amber-700 uppercase">
-              Depression Clinic
-            </span>
+            <span className="text-xs tracking-widest text-amber-700 uppercase">Depression Clinic</span>
           </a>
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8 text-sm text-stone-600 font-medium">
-            <a href="#about" className="hover:text-amber-800 transition-colors">
-              About Us
-            </a>
-            <a href="#doctor" className="hover:text-amber-800 transition-colors">
-              Dr. Ankit Parmar
-            </a>
-            <a href="#testimonials" className="hover:text-amber-800 transition-colors">
-              Stories
-            </a>
-            <a href="#approach" className="hover:text-amber-800 transition-colors">
-              Our Approach
-            </a>
-            <a
-              href="#contact"
-              className="bg-amber-600 text-white px-5 py-2 rounded-full text-sm hover:bg-amber-700 transition-colors"
-            >
+            <a href="#about" className="hover:text-amber-800 transition-colors">About Us</a>
+            <a href="#doctor" className="hover:text-amber-800 transition-colors">Dr. Ankit Parmar</a>
+            <a href="#testimonials" className="hover:text-amber-800 transition-colors">Stories</a>
+            <a href="#approach" className="hover:text-amber-800 transition-colors">Our Approach</a>
+            <a href="#contact" className="bg-amber-600 text-white px-5 py-2 rounded-full text-sm hover:bg-amber-700 transition-colors">
               Book Appointment
             </a>
           </div>
 
           {/* Mobile menu button */}
-          <button
-            className="md:hidden p-2 text-stone-600"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
+          <button className="md:hidden p-2 text-stone-600" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
             <div className="w-6 h-0.5 bg-current mb-1.5" />
             <div className="w-6 h-0.5 bg-current mb-1.5" />
             <div className="w-6 h-0.5 bg-current" />
           </button>
         </div>
 
-        {/* Mobile menu */}
         {menuOpen && (
           <div className="md:hidden bg-[#fffbf5] border-t border-amber-100 px-6 py-4 flex flex-col gap-4 text-stone-700 text-sm font-medium">
-            <a href="#about" onClick={() => setMenuOpen(false)}>
-              About Us
-            </a>
-            <a href="#doctor" onClick={() => setMenuOpen(false)}>
-              Dr. Ankit Parmar
-            </a>
-            <a href="#testimonials" onClick={() => setMenuOpen(false)}>
-              Stories
-            </a>
-            <a href="#approach" onClick={() => setMenuOpen(false)}>
-              Our Approach
-            </a>
-            <a
-              href="#contact"
-              className="bg-amber-600 text-white px-5 py-2 rounded-full text-center"
-              onClick={() => setMenuOpen(false)}
-            >
+            <a href="#about" onClick={() => setMenuOpen(false)}>About Us</a>
+            <a href="#doctor" onClick={() => setMenuOpen(false)}>Dr. Ankit Parmar</a>
+            <a href="#testimonials" onClick={() => setMenuOpen(false)}>Stories</a>
+            <a href="#approach" onClick={() => setMenuOpen(false)}>Our Approach</a>
+            <a href="#contact" className="bg-amber-600 text-white px-5 py-2 rounded-full text-center" onClick={() => setMenuOpen(false)}>
               Book Appointment
             </a>
           </div>
@@ -151,22 +122,27 @@ export default function Home() {
       </nav>
 
       <main className="flex-1">
-        {/* ─── HERO ─── */}
+
+        {/* ─── HERO — full-screen photo background ─── */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-          {/* Sunrise gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-b from-indigo-950 via-purple-900 via-40% to-amber-500" />
-
-          {/* Soft glow overlay */}
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-amber-300/40 to-transparent" />
-
-          {/* Horizon line glow */}
-          <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent" />
+          {/* Real photo background */}
+          <div className="absolute inset-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/hope-path.png"
+              alt=""
+              aria-hidden="true"
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-stone-950/92 via-stone-900/78 to-stone-950/88" />
+            {/* Amber horizon glow bleeding through */}
+            <div className="absolute inset-0 bg-gradient-to-t from-amber-900/25 via-transparent to-transparent" />
+          </div>
 
           <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-            <p className="animate-fade-up text-amber-300 text-sm tracking-[0.3em] uppercase font-medium mb-6">
+            <p className="animate-fade-up text-amber-400 text-sm tracking-[0.3em] uppercase font-medium mb-6">
               Axial Holistic Depression Clinic
             </p>
-
             <h1
               className="animate-fade-up-1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-white leading-tight mb-8"
               style={{ fontFamily: "var(--font-playfair)" }}
@@ -175,13 +151,11 @@ export default function Home() {
               <br />
               <span className="text-amber-300">Doesn&apos;t Have to Last.</span>
             </h1>
-
             <p className="animate-fade-up-2 text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed mb-10">
-              If depression has persisted despite your best efforts and
-              treatments you&apos;ve already tried, you&apos;re not out of
-              options — you&apos;ve simply arrived at the right place.
+              If depression has persisted despite your best efforts and treatments
+              you&apos;ve already tried, you&apos;re not out of options — you&apos;ve
+              simply arrived at the right place.
             </p>
-
             <div className="animate-fade-up-3 flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="#contact"
@@ -198,18 +172,32 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Scroll cue */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="rgba(255,255,255,0.5)"
-              strokeWidth="2"
-            >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2">
               <path d="M12 5v14M5 12l7 7 7-7" />
             </svg>
+          </div>
+        </section>
+
+        {/* ─── STATS BAR ─── */}
+        <section className="bg-stone-950 border-b border-stone-800 py-8 px-6">
+          <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { num: "5,000+", label: "Patients Helped" },
+              { num: "10+", label: "Years Experience" },
+              { num: "3×", label: "Board-Certified" },
+              { num: "4.9★", label: "Average Rating" },
+            ].map(({ num, label }, i) => (
+              <div key={label} data-animate data-delay={String(i * 100)}>
+                <p
+                  className="text-2xl sm:text-3xl font-bold text-amber-400"
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
+                  {num}
+                </p>
+                <p className="text-stone-400 text-sm mt-1">{label}</p>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -220,6 +208,7 @@ export default function Home() {
               <p
                 className="text-xl sm:text-2xl text-stone-500 leading-relaxed"
                 style={{ fontFamily: "var(--font-playfair)" }}
+                data-animate
               >
                 Have you tried medication after medication — each one promising
                 to be &ldquo;the one&rdquo; — only to find yourself back at
@@ -228,6 +217,7 @@ export default function Home() {
               <p
                 className="text-xl sm:text-2xl text-stone-400 leading-relaxed"
                 style={{ fontFamily: "var(--font-playfair)" }}
+                data-animate
               >
                 Are you quietly starting to wonder if this is just&hellip; how
                 life will always feel?
@@ -235,6 +225,7 @@ export default function Home() {
               <p
                 className="text-2xl sm:text-3xl text-stone-200 leading-relaxed"
                 style={{ fontFamily: "var(--font-playfair)" }}
+                data-animate
               >
                 Have you started to believe you&apos;re the problem — when
                 really, you just haven&apos;t found the{" "}
@@ -243,7 +234,7 @@ export default function Home() {
             </div>
 
             {/* Pivot */}
-            <div className="mt-16 pt-12 border-t border-stone-800">
+            <div className="mt-16 pt-12 border-t border-stone-800" data-animate>
               <p className="text-stone-500 text-sm tracking-widest uppercase mb-6">
                 Here&apos;s what we know
               </p>
@@ -264,8 +255,8 @@ export default function Home() {
         {/* ─── WHO WE HELP ─── */}
         <section id="about" className="py-24 px-6 bg-[#fffbf5]">
           <div className="max-w-6xl mx-auto">
-            {/* Mission pull-quote integrated at top */}
-            <div className="text-center mb-16">
+            {/* Mission pull-quote */}
+            <div className="text-center mb-16" data-animate>
               <p
                 className="text-2xl sm:text-3xl font-medium text-stone-800 leading-relaxed max-w-3xl mx-auto"
                 style={{ fontFamily: "var(--font-playfair)" }}
@@ -280,7 +271,7 @@ export default function Home() {
 
             <div className="grid md:grid-cols-2 gap-16 items-center">
               {/* Left: hopeful lifestyle photo */}
-              <div className="relative rounded-3xl overflow-hidden aspect-square shadow-lg">
+              <div className="relative rounded-3xl overflow-hidden aspect-square shadow-lg" data-animate>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/hope-path.png"
@@ -297,7 +288,7 @@ export default function Home() {
               </div>
 
               {/* Right: content */}
-              <div>
+              <div data-animate data-delay="200">
                 <p className="text-amber-600 text-sm tracking-widest uppercase font-medium mb-4">
                   Who We Help
                 </p>
@@ -309,16 +300,13 @@ export default function Home() {
                   <br />
                   You&apos;ve Fought.
                   <br />
-                  <span className="text-amber-700">
-                    You Deserve More.
-                  </span>
+                  <span className="text-amber-700">You Deserve More.</span>
                 </h2>
                 <div className="space-y-4 text-stone-600 leading-relaxed text-base">
                   <p>
                     If you&apos;ve been through medications, therapy, or other
                     treatments and still find yourself weighed down by
-                    depression — you&apos;re not broken, and you&apos;re not
-                    alone.
+                    depression — you&apos;re not broken, and you&apos;re not alone.
                   </p>
                   <p>
                     Treatment-resistant depression is real. It affects many
@@ -340,14 +328,8 @@ export default function Home() {
                     { num: "5,000+", label: "Patients Helped" },
                     { num: "3×", label: "Board-Certified Physician" },
                   ].map(({ num, label }) => (
-                    <div
-                      key={label}
-                      className="bg-amber-50 rounded-2xl p-4 border border-amber-100"
-                    >
-                      <p
-                        className="text-2xl font-bold text-amber-700"
-                        style={{ fontFamily: "var(--font-playfair)" }}
-                      >
+                    <div key={label} className="bg-amber-50 rounded-2xl p-4 border border-amber-100">
+                      <p className="text-2xl font-bold text-amber-700" style={{ fontFamily: "var(--font-playfair)" }}>
                         {num}
                       </p>
                       <p className="text-stone-500 text-sm mt-1">{label}</p>
@@ -362,17 +344,47 @@ export default function Home() {
         {/* ─── ABOUT THE DOCTOR ─── */}
         <section id="doctor" className="py-24 px-6 bg-amber-50">
           <div className="max-w-6xl mx-auto">
+
             {/* Question opener */}
             <p
-              className="text-center text-xl sm:text-2xl text-stone-600 italic mb-16 max-w-2xl mx-auto"
+              className="text-center text-xl sm:text-2xl text-stone-600 italic mb-12 max-w-2xl mx-auto"
               style={{ fontFamily: "var(--font-playfair)" }}
+              data-animate
             >
               What would it mean to finally have a doctor who genuinely
               doesn&apos;t give up on you?
             </p>
 
+            {/* First-person Dr. Parmar quote */}
+            <div
+              className="bg-white rounded-3xl px-10 py-12 border border-amber-100 shadow-sm text-center max-w-3xl mx-auto mb-20"
+              data-animate
+            >
+              <div
+                className="text-6xl text-amber-300 leading-none mb-4 select-none"
+                style={{ fontFamily: "Georgia, serif" }}
+                aria-hidden="true"
+              >
+                &ldquo;
+              </div>
+              <p
+                className="text-xl sm:text-2xl text-stone-700 leading-relaxed italic"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                I&apos;ve watched patients walk through my door having tried
+                everything — medication after medication, therapy after therapy
+                — still feeling completely alone in their illness. Every single
+                one of them deserved better than what they&apos;d received.
+                That&apos;s exactly why I built this practice.
+              </p>
+              <div className="mt-8 pt-6 border-t border-amber-100">
+                <p className="text-amber-700 font-semibold">Dr. Ankit Parmar</p>
+                <p className="text-stone-400 text-sm mt-1">Founder, Axial Holistic Depression Clinic</p>
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div>
+              <div data-animate>
                 <p className="text-amber-600 text-sm tracking-widest uppercase font-medium mb-4">
                   Meet Your Physician
                 </p>
@@ -408,16 +420,8 @@ export default function Home() {
                 </div>
 
                 <div className="mt-8 flex flex-wrap gap-3">
-                  {[
-                    "Triple Board-Certified",
-                    "General Psychiatry",
-                    "Child & Adolescent",
-                    "Forensic Psychiatry",
-                  ].map((tag) => (
-                    <span
-                      key={tag}
-                      className="bg-white border border-amber-200 text-amber-800 text-xs font-medium px-4 py-2 rounded-full"
-                    >
+                  {["Triple Board-Certified", "General Psychiatry", "Child & Adolescent", "Forensic Psychiatry"].map((tag) => (
+                    <span key={tag} className="bg-white border border-amber-200 text-amber-800 text-xs font-medium px-4 py-2 rounded-full">
                       {tag}
                     </span>
                   ))}
@@ -425,32 +429,24 @@ export default function Home() {
               </div>
 
               {/* Doctor photo */}
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-6" data-animate data-delay="200">
                 <div className="rounded-3xl overflow-hidden shadow-lg aspect-[3/4] max-w-sm mx-auto w-full">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/dr-parmar.jpeg"
-                    alt="Dr. Ankit Parmar"
-                    className="w-full h-full object-cover object-top"
-                  />
+                  <img src="/dr-parmar.jpeg" alt="Dr. Ankit Parmar" className="w-full h-full object-cover object-top" />
                 </div>
               </div>
             </div>
 
             {/* Insurance & compassion cards */}
             <div className="mt-16 grid md:grid-cols-2 gap-6">
-              {/* Insurance callout */}
               <div className="space-y-6">
-                <div className="bg-white rounded-3xl p-8 border border-amber-100 shadow-sm">
+                <div className="bg-white rounded-3xl p-8 border border-amber-100 shadow-sm" data-animate>
                   <div className="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center mb-5">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.5">
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                     </svg>
                   </div>
-                  <h3
-                    className="text-xl font-semibold text-stone-900 mb-3"
-                    style={{ fontFamily: "var(--font-playfair)" }}
-                  >
+                  <h3 className="text-xl font-semibold text-stone-900 mb-3" style={{ fontFamily: "var(--font-playfair)" }}>
                     Insurance Accepted
                   </h3>
                   <p className="text-stone-500 text-sm leading-relaxed">
@@ -461,16 +457,13 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="bg-white rounded-3xl p-8 border border-amber-100 shadow-sm">
+                <div className="bg-white rounded-3xl p-8 border border-amber-100 shadow-sm" data-animate data-delay="100">
                   <div className="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center mb-5">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.5">
                       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                     </svg>
                   </div>
-                  <h3
-                    className="text-xl font-semibold text-stone-900 mb-3"
-                    style={{ fontFamily: "var(--font-playfair)" }}
-                  >
+                  <h3 className="text-xl font-semibold text-stone-900 mb-3" style={{ fontFamily: "var(--font-playfair)" }}>
                     Compassionate at Every Step
                   </h3>
                   <p className="text-stone-500 text-sm leading-relaxed">
@@ -484,10 +477,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── TESTIMONIALS CAROUSEL ─── */}
+        {/* ─── TESTIMONIALS — 3 static cards ─── */}
         <section id="testimonials" className="py-24 px-6 bg-[#fffbf5]">
-          <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-12">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-14" data-animate>
               <p className="text-amber-600 text-sm tracking-widest uppercase font-medium mb-4">
                 Patient Stories
               </p>
@@ -497,112 +490,54 @@ export default function Home() {
               >
                 Stories of Healing &amp; Hope
               </h2>
+              <p className="text-stone-500 mt-3 max-w-md mx-auto text-sm">
+                Real words from real patients — not curated, not cherry-picked.
+              </p>
             </div>
 
-            {/* Card with arrow buttons */}
-            <div className="relative">
-              {/* Prev arrow */}
-              <button
-                onClick={prevTestimonial}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 sm:-translate-x-10 w-10 h-10 rounded-full bg-white border border-amber-200 shadow-sm flex items-center justify-center text-amber-600 hover:bg-amber-50 transition-colors z-10"
-                aria-label="Previous testimonial"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </button>
-
-              {/* Next arrow */}
-              <button
-                onClick={nextTestimonial}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 sm:translate-x-10 w-10 h-10 rounded-full bg-white border border-amber-200 shadow-sm flex items-center justify-center text-amber-600 hover:bg-amber-50 transition-colors z-10"
-                aria-label="Next testimonial"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
-              </button>
-
-              <div
-                className="bg-white rounded-3xl p-8 sm:p-10 border border-amber-100 shadow-sm min-h-[220px] flex flex-col justify-between cursor-grab active:cursor-grabbing"
-                onTouchStart={handleSwipeStart}
-                onTouchEnd={handleSwipeEnd}
-              >
-                <div>
-                  <div className="flex gap-1 mb-5">
-                    {Array.from({ length: 5 }).map((_, i) => (
+            <div className="grid md:grid-cols-3 gap-6">
+              {testimonials.map((t, i) => (
+                <div
+                  key={t.name}
+                  className="bg-white rounded-3xl p-8 border border-amber-100 shadow-sm flex flex-col"
+                  data-animate
+                  data-delay={String(i * 150)}
+                >
+                  {/* Stars */}
+                  <div className="flex gap-1 mb-6">
+                    {Array.from({ length: 5 }).map((_, j) => (
                       <svg
-                        key={i}
+                        key={j}
                         width="18"
                         height="18"
                         viewBox="0 0 24 24"
-                        fill={i < testimonials[activeTestimonial].stars ? "#f59e0b" : "none"}
-                        stroke={i < testimonials[activeTestimonial].stars ? "#f59e0b" : "#d1d5db"}
+                        fill={j < t.stars ? "#f59e0b" : "none"}
+                        stroke={j < t.stars ? "#f59e0b" : "#d1d5db"}
                         strokeWidth="1.5"
                       >
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                       </svg>
                     ))}
                   </div>
+
+                  {/* Quote */}
                   <p
-                    className="text-stone-700 text-lg leading-relaxed italic mb-6"
+                    className="text-stone-600 leading-relaxed italic flex-1 text-base mb-6"
                     style={{ fontFamily: "var(--font-playfair)" }}
                   >
-                    &ldquo;{testimonials[activeTestimonial].text}&rdquo;
+                    &ldquo;{t.text}&rdquo;
                   </p>
-                </div>
-                <p className="text-stone-900 font-semibold">
-                  — {testimonials[activeTestimonial].name}
-                </p>
-              </div>
-            </div>
 
-            {/* Dot navigation */}
-            <div className="flex justify-center gap-2 mt-6">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActiveTestimonial(i)}
-                  className={`rounded-full transition-all duration-300 ${
-                    i === activeTestimonial
-                      ? "w-6 h-2.5 bg-amber-500"
-                      : "w-2.5 h-2.5 bg-amber-200 hover:bg-amber-300"
-                  }`}
-                  aria-label={`Go to testimonial ${i + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ─── LIFE PHOTO STRIP ─── */}
-        <section className="py-16 px-6 bg-amber-50">
-          <div className="max-w-6xl mx-auto">
-            <p
-              className="text-center text-xl sm:text-2xl font-medium text-stone-700 mb-10 max-w-2xl mx-auto"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
-              Because life on the other side of depression is{" "}
-              <span className="text-amber-700 italic">worth fighting for.</span>
-            </p>
-            <div className="grid grid-cols-3 gap-4">
-              {[
-                {
-                  src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80",
-                  alt: "Friends laughing together outdoors",
-                },
-                {
-                  src: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80",
-                  alt: "Woman smiling with joy in natural light",
-                },
-                {
-                  src: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=600&q=80",
-                  alt: "Sunlight through trees on a peaceful path",
-                },
-              ].map(({ src, alt }) => (
-                <div key={alt} className="rounded-2xl overflow-hidden aspect-[4/3] shadow-sm">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={src} alt={alt} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                  {/* Attribution */}
+                  <div className="pt-5 border-t border-amber-100 flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center text-amber-700 font-bold text-sm flex-shrink-0">
+                      {t.name[0]}
+                    </div>
+                    <div>
+                      <p className="text-stone-900 font-semibold text-sm">{t.name}</p>
+                      <p className="text-amber-600 text-xs">Verified Patient</p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -612,7 +547,7 @@ export default function Home() {
         {/* ─── OUR APPROACH ─── */}
         <section id="approach" className="py-24 px-6 bg-stone-900">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
+            <div className="text-center mb-16" data-animate>
               <p className="text-amber-400 text-sm tracking-widest uppercase font-medium mb-4">
                 Our Approach
               </p>
@@ -679,21 +614,16 @@ export default function Home() {
                     </svg>
                   ),
                 },
-              ].map(({ step, title, body, icon }) => (
+              ].map(({ step, title, body, icon }, i) => (
                 <div
                   key={step}
                   className="bg-stone-800 rounded-2xl p-6 border border-stone-700 hover:border-amber-600/50 transition-colors group"
+                  data-animate
+                  data-delay={String(i * 100)}
                 >
-                  <div className="text-amber-400 mb-4 group-hover:text-amber-300 transition-colors">
-                    {icon}
-                  </div>
-                  <p className="text-amber-600 text-xs font-bold tracking-wider mb-2">
-                    {step}
-                  </p>
-                  <h3
-                    className="text-white font-semibold text-lg mb-3"
-                    style={{ fontFamily: "var(--font-playfair)" }}
-                  >
+                  <div className="text-amber-400 mb-4 group-hover:text-amber-300 transition-colors">{icon}</div>
+                  <p className="text-amber-600 text-xs font-bold tracking-wider mb-2">{step}</p>
+                  <h3 className="text-white font-semibold text-lg mb-3" style={{ fontFamily: "var(--font-playfair)" }}>
                     {title}
                   </h3>
                   <p className="text-stone-400 text-sm leading-relaxed">{body}</p>
@@ -705,7 +635,7 @@ export default function Home() {
 
         {/* ─── INSURANCE MARQUEE ─── */}
         <section className="py-16 px-6 bg-amber-50">
-          <div className="max-w-3xl mx-auto text-center mb-10">
+          <div className="max-w-3xl mx-auto text-center mb-10" data-animate>
             <h2
               className="text-2xl sm:text-3xl font-semibold text-stone-900 mb-3"
               style={{ fontFamily: "var(--font-playfair)" }}
@@ -718,20 +648,58 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Scrolling logo band */}
           <div className="overflow-hidden">
             <div className="animate-marquee flex gap-12 items-center w-max">
-              {/* Two copies for seamless loop */}
               {[...insuranceLogos, ...insuranceLogos].map(({ name, file }, i) => (
                 <div
                   key={`${name}-${i}`}
                   className="bg-white border border-stone-100 rounded-xl shadow-sm flex items-center justify-center px-5 py-3 w-40 h-14 flex-shrink-0"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={file} alt={name} className="max-h-7 max-w-full w-auto object-contain" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─── LIFE PHOTO STRIP ─── */}
+        <section className="py-16 px-6 bg-amber-50">
+          <div className="max-w-6xl mx-auto">
+            <p
+              className="text-center text-xl sm:text-2xl font-medium text-stone-700 mb-10 max-w-2xl mx-auto"
+              style={{ fontFamily: "var(--font-playfair)" }}
+              data-animate
+            >
+              Because life on the other side of depression is{" "}
+              <span className="text-amber-700 italic">worth fighting for.</span>
+            </p>
+            <div className="grid grid-cols-3 gap-4">
+              {[
+                {
+                  src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80",
+                  alt: "Friends laughing together outdoors",
+                },
+                {
+                  src: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80",
+                  alt: "Woman smiling with joy in natural light",
+                },
+                {
+                  src: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=600&q=80",
+                  alt: "Sunlight through trees on a peaceful path",
+                },
+              ].map(({ src, alt }, i) => (
+                <div
+                  key={alt}
+                  className="rounded-2xl overflow-hidden aspect-[4/3] shadow-sm"
+                  data-animate
+                  data-delay={String(i * 100)}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={file}
-                    alt={name}
-                    className="max-h-7 max-w-full w-auto object-contain"
+                    src={src}
+                    alt={alt}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               ))}
@@ -742,7 +710,7 @@ export default function Home() {
         {/* ─── WHAT TO EXPECT ─── */}
         <section id="what-to-expect" className="py-24 px-6 bg-[#fffbf5]">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
+            <div className="text-center mb-16" data-animate>
               <p className="text-amber-600 text-sm tracking-widest uppercase font-medium mb-4">
                 What to Expect
               </p>
@@ -760,7 +728,7 @@ export default function Home() {
 
             <div className="grid md:grid-cols-2 gap-16 items-center">
               {/* Photo */}
-              <div className="rounded-3xl overflow-hidden shadow-md aspect-[3/4] max-w-sm mx-auto w-full">
+              <div className="rounded-3xl overflow-hidden shadow-md aspect-[3/4] max-w-sm mx-auto w-full" data-animate>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/consultation.png"
@@ -769,64 +737,59 @@ export default function Home() {
                 />
               </div>
 
-              <div>
-            <div className="relative">
-              {/* Vertical line */}
-              <div className="absolute left-6 top-0 bottom-0 w-px bg-amber-200 hidden sm:block" />
-
-              <div className="space-y-10">
-                {[
-                  {
-                    num: "1",
-                    title: "Reach Out",
-                    body: "Send us a message or give us a call. There's no pressure, no commitment — just a conversation about where you are and whether we might be a good fit.",
-                  },
-                  {
-                    num: "2",
-                    title: "Your First Appointment",
-                    body: "We'll spend time truly getting to know you — your history, your experience with depression, and your goals. This is the foundation of everything we do.",
-                  },
-                  {
-                    num: "3",
-                    title: "A Plan Built for You",
-                    body: "Based on our evaluation, we'll discuss what options we believe make sense for your specific situation and walk you through every possibility together.",
-                  },
-                  {
-                    num: "4",
-                    title: "Ongoing Partnership",
-                    body: "Your care doesn't end at a single appointment. We check in, we adjust, and we stay with you for as long as you need us.",
-                  },
-                ].map(({ num, title, body }) => (
-                  <div
-                    key={num}
-                    className="sm:pl-16 relative flex gap-6 sm:block"
-                  >
-                    <div className="relative z-10 sm:absolute sm:left-0 sm:top-1 flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-amber-200">
-                        {num}
+              <div data-animate data-delay="200">
+                <div className="relative">
+                  <div className="absolute left-6 top-0 bottom-0 w-px bg-amber-200 hidden sm:block" />
+                  <div className="space-y-10">
+                    {[
+                      {
+                        num: "1",
+                        title: "Reach Out",
+                        body: "Send us a message or give us a call. There's no pressure, no commitment — just a conversation about where you are and whether we might be a good fit.",
+                      },
+                      {
+                        num: "2",
+                        title: "Your First Appointment",
+                        body: "We'll spend time truly getting to know you — your history, your experience with depression, and your goals. This is the foundation of everything we do.",
+                      },
+                      {
+                        num: "3",
+                        title: "A Plan Built for You",
+                        body: "Based on our evaluation, we'll discuss what options we believe make sense for your specific situation and walk you through every possibility together.",
+                      },
+                      {
+                        num: "4",
+                        title: "Ongoing Partnership",
+                        body: "Your care doesn't end at a single appointment. We check in, we adjust, and we stay with you for as long as you need us.",
+                      },
+                    ].map(({ num, title, body }) => (
+                      <div key={num} className="sm:pl-16 relative flex gap-6 sm:block">
+                        <div className="relative z-10 sm:absolute sm:left-0 sm:top-1 flex-shrink-0">
+                          <div className="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-amber-200">
+                            {num}
+                          </div>
+                        </div>
+                        <div className="pb-2">
+                          <h3
+                            className="text-xl font-semibold text-stone-900 mb-2"
+                            style={{ fontFamily: "var(--font-playfair)" }}
+                          >
+                            {title}
+                          </h3>
+                          <p className="text-stone-500 leading-relaxed">{body}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="pb-2">
-                      <h3
-                        className="text-xl font-semibold text-stone-900 mb-2"
-                        style={{ fontFamily: "var(--font-playfair)" }}
-                      >
-                        {title}
-                      </h3>
-                      <p className="text-stone-500 leading-relaxed">{body}</p>
-                    </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </section>
 
         {/* ─── WARM BANNER ─── */}
         <section className="py-20 px-6 bg-gradient-to-r from-amber-500 to-orange-400">
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="max-w-3xl mx-auto text-center" data-animate>
             <h2
               className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white mb-6 leading-tight"
               style={{ fontFamily: "var(--font-playfair)" }}
@@ -849,7 +812,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-16">
               {/* Left */}
-              <div>
+              <div data-animate>
                 <p className="text-amber-400 text-sm tracking-widest uppercase font-medium mb-4">
                   Reach Out
                 </p>
@@ -904,9 +867,7 @@ export default function Home() {
                         {icon}
                       </div>
                       <div>
-                        <p className="text-stone-500 text-xs uppercase tracking-wider mb-0.5">
-                          {label}
-                        </p>
+                        <p className="text-stone-500 text-xs uppercase tracking-wider mb-0.5">{label}</p>
                         <p className="text-stone-300 text-sm">{value}</p>
                       </div>
                     </div>
@@ -915,7 +876,7 @@ export default function Home() {
               </div>
 
               {/* Right: form */}
-              <div className="bg-stone-800 rounded-3xl p-8 border border-stone-700">
+              <div className="bg-stone-800 rounded-3xl p-8 border border-stone-700" data-animate data-delay="200">
                 {submitted ? (
                   <div className="flex flex-col items-center justify-center h-full text-center py-10">
                     <div className="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mb-4">
@@ -923,106 +884,71 @@ export default function Home() {
                         <path d="M20 6L9 17l-5-5" />
                       </svg>
                     </div>
-                    <h3
-                      className="text-white text-2xl font-semibold mb-2"
-                      style={{ fontFamily: "var(--font-playfair)" }}
-                    >
+                    <h3 className="text-white text-2xl font-semibold mb-2" style={{ fontFamily: "var(--font-playfair)" }}>
                       Message Received
                     </h3>
-                    <p className="text-stone-400">
-                      Thank you for reaching out. We&apos;ll be in touch soon.
-                    </p>
+                    <p className="text-stone-400">Thank you for reaching out. We&apos;ll be in touch soon.</p>
                   </div>
                 ) : (
                   <>
-                    <h3
-                      className="text-white text-xl font-semibold mb-6"
-                      style={{ fontFamily: "var(--font-playfair)" }}
-                    >
+                    <h3 className="text-white text-xl font-semibold mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
                       Send Us a Message
                     </h3>
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="text-stone-400 text-xs uppercase tracking-wider mb-1.5 block">
-                            Your Name
-                          </label>
+                          <label className="text-stone-400 text-xs uppercase tracking-wider mb-1.5 block">Your Name</label>
                           <input
                             type="text"
                             required
                             placeholder="Jane Smith"
                             value={formData.name}
-                            onChange={(e) =>
-                              setFormData({ ...formData, name: e.target.value })
-                            }
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             className="w-full bg-stone-700 border border-stone-600 text-white placeholder-stone-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 transition-colors"
                           />
                         </div>
                         <div>
-                          <label className="text-stone-400 text-xs uppercase tracking-wider mb-1.5 block">
-                            Phone (optional)
-                          </label>
+                          <label className="text-stone-400 text-xs uppercase tracking-wider mb-1.5 block">Phone (optional)</label>
                           <input
                             type="tel"
                             placeholder="(555) 000-0000"
                             value={formData.phone}
-                            onChange={(e) =>
-                              setFormData({
-                                ...formData,
-                                phone: e.target.value,
-                              })
-                            }
+                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                             className="w-full bg-stone-700 border border-stone-600 text-white placeholder-stone-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 transition-colors"
                           />
                         </div>
                       </div>
-
                       <div>
-                        <label className="text-stone-400 text-xs uppercase tracking-wider mb-1.5 block">
-                          Email Address
-                        </label>
+                        <label className="text-stone-400 text-xs uppercase tracking-wider mb-1.5 block">Email Address</label>
                         <input
                           type="email"
                           required
                           placeholder="you@example.com"
                           value={formData.email}
-                          onChange={(e) =>
-                            setFormData({ ...formData, email: e.target.value })
-                          }
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           className="w-full bg-stone-700 border border-stone-600 text-white placeholder-stone-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 transition-colors"
                         />
                       </div>
-
                       <div>
-                        <label className="text-stone-400 text-xs uppercase tracking-wider mb-1.5 block">
-                          How can we help?
-                        </label>
+                        <label className="text-stone-400 text-xs uppercase tracking-wider mb-1.5 block">How can we help?</label>
                         <textarea
                           required
                           rows={4}
                           placeholder="Tell us a little about what you're going through. There's no wrong answer."
                           value={formData.message}
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              message: e.target.value,
-                            })
-                          }
+                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                           className="w-full bg-stone-700 border border-stone-600 text-white placeholder-stone-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 transition-colors resize-none"
                         />
                       </div>
-
                       <button
                         type="submit"
                         className="w-full bg-amber-500 hover:bg-amber-400 text-white font-semibold py-4 rounded-xl transition-colors text-sm"
                       >
                         Send Message
                       </button>
-
                       <p className="text-stone-500 text-xs text-center">
                         We typically respond within one business day. If this is
-                        an emergency, please call 988 (Suicide &amp; Crisis
-                        Lifeline).
+                        an emergency, please call 988 (Suicide &amp; Crisis Lifeline).
                       </p>
                     </form>
                   </>
@@ -1038,15 +964,11 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start gap-8">
             <div>
-              <p
-                className="text-lg font-semibold text-amber-400 mb-1"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
+              <p className="text-lg font-semibold text-amber-400 mb-1" style={{ fontFamily: "var(--font-playfair)" }}>
                 Axial Holistic Depression Clinic
               </p>
               <p className="text-stone-500 text-sm max-w-xs">
-                Specialized, compassionate care for treatment-resistant
-                depression. You&apos;re not out of options.
+                Specialized, compassionate care for treatment-resistant depression. You&apos;re not out of options.
               </p>
             </div>
 
@@ -1062,11 +984,7 @@ export default function Home() {
                     ["What to Expect", "#what-to-expect"],
                     ["Contact", "#contact"],
                   ].map(([label, href]) => (
-                    <a
-                      key={label}
-                      href={href}
-                      className="block text-stone-500 hover:text-amber-400 transition-colors"
-                    >
+                    <a key={label} href={href} className="block text-stone-500 hover:text-amber-400 transition-colors">
                       {label}
                     </a>
                   ))}
@@ -1085,14 +1003,8 @@ export default function Home() {
           </div>
 
           <div className="mt-10 pt-6 border-t border-stone-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-stone-600 text-xs">
-            <p>
-              &copy; {new Date().getFullYear()} Axial Holistic Depression
-              Clinic. All rights reserved.
-            </p>
-            <p>
-              This website is for informational purposes only and does not
-              constitute medical advice.
-            </p>
+            <p>&copy; {new Date().getFullYear()} Axial Holistic Depression Clinic. All rights reserved.</p>
+            <p>This website is for informational purposes only and does not constitute medical advice.</p>
           </div>
         </div>
       </footer>
