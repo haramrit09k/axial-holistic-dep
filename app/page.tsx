@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -425,27 +426,32 @@ export default function Home() {
                     the care you deserve.
                   </p>
 
-                  {/* Insurance provider badges */}
-                  <div className="flex flex-wrap gap-2">
+                  {/* Insurance provider logos */}
+                  <div className="flex flex-wrap items-center gap-3 mt-1">
                     {[
-                      { name: "Medicare", bg: "bg-blue-50", border: "border-blue-200", text: "text-blue-700" },
-                      { name: "Aetna", bg: "bg-purple-50", border: "border-purple-200", text: "text-purple-700" },
-                      { name: "Blue Cross", bg: "bg-sky-50", border: "border-sky-200", text: "text-sky-700" },
-                      { name: "Cigna", bg: "bg-teal-50", border: "border-teal-200", text: "text-teal-700" },
-                      { name: "UnitedHealth", bg: "bg-indigo-50", border: "border-indigo-200", text: "text-indigo-700" },
-                      { name: "Humana", bg: "bg-green-50", border: "border-green-200", text: "text-green-700" },
-                    ].map(({ name, bg, border, text }) => (
-                      <span
+                      { name: "Medicare", domain: "medicare.gov" },
+                      { name: "Aetna", domain: "aetna.com" },
+                      { name: "Blue Cross Blue Shield", domain: "bcbs.com" },
+                      { name: "Cigna", domain: "cigna.com" },
+                      { name: "UnitedHealthcare", domain: "uhc.com" },
+                      { name: "Humana", domain: "humana.com" },
+                    ].map(({ name, domain }) => (
+                      <div
                         key={name}
-                        className={`inline-flex items-center gap-1.5 ${bg} ${border} ${text} border text-xs font-semibold px-3 py-1.5 rounded-full`}
+                        className="bg-white border border-stone-100 rounded-xl px-3 py-2 flex items-center justify-center shadow-sm"
+                        title={name}
                       >
-                        <span className={`w-2 h-2 rounded-full ${bg.replace("50", "400").replace("bg-", "bg-")}`}
-                          style={{ background: "currentColor", opacity: 0.6 }}
+                        <Image
+                          src={`https://logo.clearbit.com/${domain}`}
+                          alt={name}
+                          width={72}
+                          height={28}
+                          className="object-contain h-7 w-auto"
+                          unoptimized
                         />
-                        {name}
-                      </span>
+                      </div>
                     ))}
-                    <span className="inline-flex items-center bg-stone-50 border border-stone-200 text-stone-500 text-xs font-medium px-3 py-1.5 rounded-full italic">
+                    <span className="text-stone-400 text-sm italic font-medium">
                       & many more
                     </span>
                   </div>
