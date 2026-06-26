@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InsuranceLogo from "@/components/InsuranceLogo";
 
 export default function Home() {
@@ -12,6 +12,45 @@ export default function Home() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+
+  const testimonials = [
+    {
+      name: "Hannah Arey",
+      stars: 5,
+      text: "Dr. Parmar is very kind, patient, professional, and understanding. I can tell he truly cares about his patients. Trusting someone with your mental health is a hard thing to do, but his demeanor makes it very easy to talk about your struggles.",
+    },
+    {
+      name: "Mark Cepeda",
+      stars: 5,
+      text: "Over the last 4 months of ups and downs, this doctor has been navigating the complexities of my son's mental health issues. I am forever grateful and am blessed that this is who we ended up with as our Dr. for my child.",
+    },
+    {
+      name: "LaNe sha B",
+      stars: 4,
+      text: "Dr. Parmar's holistic approach and dedication have made a significant difference in my treatment.",
+    },
+    {
+      name: "Celina Navarro",
+      stars: 5,
+      text: "I am eternally grateful for having found such a professional psychiatrist and above all a great human being! Highly recommend, thanks Dr. Parmar, for your attention to my son!",
+    },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [testimonials.length]);
+
+  const insuranceLogos = [
+    { name: "Medicare", file: "/logos/medicare.png" },
+    { name: "Aetna", file: "/logos/aetna.webp" },
+    { name: "Blue Cross Blue Shield", file: "/logos/bcbs.png" },
+    { name: "Cigna", file: "/logos/cigna.png" },
+    { name: "UnitedHealthcare", file: "/logos/uhc.png" },
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -445,27 +484,12 @@ export default function Home() {
                   >
                     Insurance Accepted
                   </h3>
-                  <p className="text-stone-500 text-sm leading-relaxed mb-5">
+                  <p className="text-stone-500 text-sm leading-relaxed">
                     We work with most major insurance providers to help ensure
                     that financial concerns don&apos;t stand between you and
-                    the care you deserve.
+                    the care you deserve. Medicare, Aetna, Blue Cross Blue Shield,
+                    Cigna, UnitedHealthcare, and many more.
                   </p>
-
-                  {/* Insurance provider logos */}
-                  <div className="flex flex-wrap items-center gap-3 mt-1">
-                    {[
-                      { name: "Medicare", file: "/logos/medicare.png" },
-                      { name: "Aetna", file: "/logos/aetna.webp" },
-                      { name: "Blue Cross Blue Shield", file: "/logos/bcbs.png" },
-                      { name: "Cigna", file: "/logos/cigna.png" },
-                      { name: "UnitedHealthcare", file: "/logos/uhc.png" },
-                    ].map(({ name, file }) => (
-                      <InsuranceLogo key={name} name={name} file={file} />
-                    ))}
-                    <span className="text-stone-400 text-sm italic font-medium">
-                      & many more
-                    </span>
-                  </div>
                 </div>
 
                 <div className="bg-white rounded-3xl p-8 border border-amber-100 shadow-sm">
@@ -578,10 +602,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── TESTIMONIALS ─── */}
+        {/* ─── TESTIMONIALS CAROUSEL ─── */}
         <section id="testimonials" className="py-24 px-6 bg-[#fffbf5]">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-12">
               <p className="text-amber-600 text-sm tracking-widest uppercase font-medium mb-4">
                 Patient Stories
               </p>
@@ -593,52 +617,84 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                {
-                  name: "Hannah Arey",
-                  stars: 5,
-                  text: "Dr. Parmar is very kind, patient, professional, and understanding. I can tell he truly cares about his patients. Trusting someone with your mental health is a hard thing to do, but his demeanor makes it very easy to talk about your struggles.",
-                },
-                {
-                  name: "Mark Cepeda",
-                  stars: 5,
-                  text: "Over the last 4 months of ups and downs, this doctor has been navigating the complexities of my son's mental health issues. I am forever grateful and am blessed that this is who we ended up with as our Dr. for my child.",
-                },
-                {
-                  name: "LaNe sha B",
-                  stars: 4,
-                  text: "Dr. Parmar's holistic approach and dedication have made a significant difference in my treatment.",
-                },
-                {
-                  name: "Celina Navarro",
-                  stars: 5,
-                  text: "I am eternally grateful for having found such a professional psychiatrist and above all a great human being! Highly recommend, thanks Dr. Parmar, for your attention to my son!",
-                },
-              ].map(({ name, stars, text }) => (
-                <div
-                  key={name}
-                  className="bg-white rounded-2xl p-6 border border-amber-100 shadow-sm flex flex-col gap-4"
+            {/* Card */}
+            <div className="bg-white rounded-3xl p-8 sm:p-10 border border-amber-100 shadow-sm min-h-[220px] flex flex-col justify-between">
+              <div>
+                <div className="flex gap-1 mb-5">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg
+                      key={i}
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill={i < testimonials[activeTestimonial].stars ? "#f59e0b" : "none"}
+                      stroke={i < testimonials[activeTestimonial].stars ? "#f59e0b" : "#d1d5db"}
+                      strokeWidth="1.5"
+                    >
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                  ))}
+                </div>
+                <p
+                  className="text-stone-700 text-lg leading-relaxed italic mb-6"
+                  style={{ fontFamily: "var(--font-playfair)" }}
                 >
-                  <div className="flex gap-1">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <svg
-                        key={i}
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill={i < stars ? "#f59e0b" : "none"}
-                        stroke={i < stars ? "#f59e0b" : "#d1d5db"}
-                        strokeWidth="1.5"
-                      >
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <p className="text-stone-600 text-sm leading-relaxed flex-1 italic">
-                    &ldquo;{text}&rdquo;
-                  </p>
-                  <p className="text-stone-900 font-semibold text-sm">{name}</p>
+                  &ldquo;{testimonials[activeTestimonial].text}&rdquo;
+                </p>
+              </div>
+              <p className="text-stone-900 font-semibold">
+                — {testimonials[activeTestimonial].name}
+              </p>
+            </div>
+
+            {/* Dot navigation */}
+            <div className="flex justify-center gap-2 mt-6">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveTestimonial(i)}
+                  className={`rounded-full transition-all duration-300 ${
+                    i === activeTestimonial
+                      ? "w-6 h-2.5 bg-amber-500"
+                      : "w-2.5 h-2.5 bg-amber-200 hover:bg-amber-300"
+                  }`}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─── INSURANCE MARQUEE ─── */}
+        <section className="py-16 px-6 bg-amber-50">
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <h2
+              className="text-2xl sm:text-3xl font-semibold text-stone-900 mb-3"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Worried About Cost? We Accept All Major Insurances.
+            </h2>
+            <p className="text-stone-500 text-sm">
+              We partner with leading insurance providers so you can access
+              high-quality depression care without financial stress.
+            </p>
+          </div>
+
+          {/* Scrolling logo band */}
+          <div className="overflow-hidden">
+            <div className="animate-marquee flex gap-12 items-center w-max">
+              {/* Two copies for seamless loop */}
+              {[...insuranceLogos, ...insuranceLogos].map(({ name, file }, i) => (
+                <div
+                  key={`${name}-${i}`}
+                  className="bg-white border border-stone-100 rounded-xl shadow-sm flex items-center justify-center px-5 py-3 w-40 h-14 flex-shrink-0"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={file}
+                    alt={name}
+                    className="max-h-7 max-w-full w-auto object-contain"
+                  />
                 </div>
               ))}
             </div>
