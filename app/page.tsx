@@ -419,11 +419,36 @@ export default function Home() {
                   >
                     Insurance Accepted
                   </h3>
-                  <p className="text-stone-500 text-sm leading-relaxed">
-                    We work with most major insurance providers, including
-                    Medicare, to help ensure that financial concerns
-                    don&apos;t stand between you and the care you deserve.
+                  <p className="text-stone-500 text-sm leading-relaxed mb-5">
+                    We work with most major insurance providers to help ensure
+                    that financial concerns don&apos;t stand between you and
+                    the care you deserve.
                   </p>
+
+                  {/* Insurance provider badges */}
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      { name: "Medicare", bg: "bg-blue-50", border: "border-blue-200", text: "text-blue-700" },
+                      { name: "Aetna", bg: "bg-purple-50", border: "border-purple-200", text: "text-purple-700" },
+                      { name: "Blue Cross", bg: "bg-sky-50", border: "border-sky-200", text: "text-sky-700" },
+                      { name: "Cigna", bg: "bg-teal-50", border: "border-teal-200", text: "text-teal-700" },
+                      { name: "UnitedHealth", bg: "bg-indigo-50", border: "border-indigo-200", text: "text-indigo-700" },
+                      { name: "Humana", bg: "bg-green-50", border: "border-green-200", text: "text-green-700" },
+                    ].map(({ name, bg, border, text }) => (
+                      <span
+                        key={name}
+                        className={`inline-flex items-center gap-1.5 ${bg} ${border} ${text} border text-xs font-semibold px-3 py-1.5 rounded-full`}
+                      >
+                        <span className={`w-2 h-2 rounded-full ${bg.replace("50", "400").replace("bg-", "bg-")}`}
+                          style={{ background: "currentColor", opacity: 0.6 }}
+                        />
+                        {name}
+                      </span>
+                    ))}
+                    <span className="inline-flex items-center bg-stone-50 border border-stone-200 text-stone-500 text-xs font-medium px-3 py-1.5 rounded-full italic">
+                      & many more
+                    </span>
+                  </div>
                 </div>
 
                 <div className="bg-white rounded-3xl p-8 border border-amber-100 shadow-sm">
