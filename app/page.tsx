@@ -6,6 +6,7 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [showStickyBtn, setShowStickyBtn] = useState(false);
 
   const testimonials = [
@@ -61,9 +62,24 @@ export default function Home() {
     };
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setSubmitError(data.error ?? "Something went wrong. Please call us directly.");
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Could not send. Please call us directly.");
+    }
   };
 
   return (
@@ -946,6 +962,9 @@ export default function Home() {
                       >
                         Send Message
                       </button>
+                      {submitError && (
+                        <p className="text-red-400 text-sm text-center">{submitError}</p>
+                      )}
                       <p className="text-stone-500 text-xs text-center">
                         We typically respond within one business day. If this is
                         an emergency, please call 988 (Suicide &amp; Crisis Lifeline).
