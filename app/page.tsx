@@ -429,14 +429,13 @@ export default function Home() {
                   {/* Insurance provider logos */}
                   <div className="flex flex-wrap items-center gap-3 mt-1">
                     {[
-                      { name: "Medicare", domain: "medicare.gov" },
-                      { name: "Aetna", domain: "aetna.com" },
-                      { name: "Blue Cross", domain: "bcbsa.com" },
-                      { name: "Cigna", domain: "cigna.com" },
-                      { name: "UnitedHealthcare", domain: "uhc.com" },
-                      { name: "Humana", domain: "humana.com" },
-                    ].map(({ name, domain }) => (
-                      <InsuranceLogo key={name} name={name} domain={domain} />
+                      { name: "Medicare", file: "/logos/medicare.png" },
+                      { name: "Aetna", file: "/logos/aetna.webp" },
+                      { name: "Blue Cross Blue Shield", file: "/logos/bcbs.jpeg" },
+                      { name: "Cigna", file: "/logos/cigna.png" },
+                      { name: "UnitedHealthcare", file: "/logos/uhc.png" },
+                    ].map(({ name, file }) => (
+                      <InsuranceLogo key={name} name={name} file={file} />
                     ))}
                     <span className="text-stone-400 text-sm italic font-medium">
                       & many more
