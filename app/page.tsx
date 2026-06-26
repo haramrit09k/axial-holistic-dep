@@ -213,6 +213,54 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ─── RHETORICAL QUESTIONS ─── */}
+        <section className="py-28 px-6 bg-stone-950">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="space-y-10">
+              <p
+                className="text-xl sm:text-2xl text-stone-500 leading-relaxed"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                Have you tried medication after medication — each one promising
+                to be &ldquo;the one&rdquo; — only to find yourself back at
+                square one?
+              </p>
+              <p
+                className="text-xl sm:text-2xl text-stone-400 leading-relaxed"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                Are you quietly starting to wonder if this is just&hellip; how
+                life will always feel?
+              </p>
+              <p
+                className="text-2xl sm:text-3xl text-stone-200 leading-relaxed"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                Have you started to believe you&apos;re the problem — when
+                really, you just haven&apos;t found the{" "}
+                <span className="italic">right kind of care</span>?
+              </p>
+            </div>
+
+            {/* Pivot */}
+            <div className="mt-16 pt-12 border-t border-stone-800">
+              <p className="text-stone-500 text-sm tracking-widest uppercase mb-6">
+                Here&apos;s what we know
+              </p>
+              <p
+                className="text-3xl sm:text-4xl font-semibold leading-snug"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                <span className="text-amber-400">
+                  Treatment-resistant depression is real.
+                </span>
+                <br />
+                <span className="text-white">And so is the path through it.</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* ─── WHO WE HELP ─── */}
         <section id="about" className="py-24 px-6 bg-[#fffbf5]">
           <div className="max-w-6xl mx-auto">
@@ -314,6 +362,15 @@ export default function Home() {
         {/* ─── ABOUT THE DOCTOR ─── */}
         <section id="doctor" className="py-24 px-6 bg-amber-50">
           <div className="max-w-6xl mx-auto">
+            {/* Question opener */}
+            <p
+              className="text-center text-xl sm:text-2xl text-stone-600 italic mb-16 max-w-2xl mx-auto"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              What would it mean to finally have a doctor who genuinely
+              doesn&apos;t give up on you?
+            </p>
+
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
                 <p className="text-amber-600 text-sm tracking-widest uppercase font-medium mb-4">
@@ -565,6 +622,10 @@ export default function Home() {
               >
                 Holistic. Personal. Yours.
               </h2>
+              <p className="text-amber-300 text-lg italic mb-3 max-w-xl mx-auto" style={{ fontFamily: "var(--font-playfair)" }}>
+                What if the reason other treatments haven&apos;t worked is that
+                none of them were actually built for you?
+              </p>
               <p className="text-stone-400 max-w-xl mx-auto">
                 No two people experience depression the same way. Your care plan
                 shouldn&apos;t be the same either.
@@ -691,6 +752,10 @@ export default function Home() {
               >
                 Your First Steps With Us
               </h2>
+              <p className="text-amber-700 text-lg italic mt-4 max-w-lg mx-auto" style={{ fontFamily: "var(--font-playfair)" }}>
+                What if the hardest part is already behind you — and the next
+                step is simpler than you think?
+              </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-16 items-center">
