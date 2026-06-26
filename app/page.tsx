@@ -163,14 +163,13 @@ export default function Home() {
               className="animate-fade-up-1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-white leading-tight mb-8"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Your Darkness
+              Where Cutting-Edge Care
               <br />
-              <span className="text-amber-300">Doesn&apos;t Have to Last.</span>
+              <span className="text-amber-300">Meets Holistic Healing.</span>
             </h1>
             <p className="animate-fade-up-2 text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed mb-10">
-              If depression has persisted despite your best efforts and treatments
-              you&apos;ve already tried, you&apos;re not out of options — you&apos;ve
-              simply arrived at the right place.
+              Deeply personalized, integrative care for people living with
+              persistent depression — so you can reclaim the life you deserve.
             </p>
             <div className="animate-fade-up-3 flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -299,7 +298,7 @@ export default function Home() {
                   className="absolute bottom-6 left-6 right-6 text-white text-lg font-medium drop-shadow-lg"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
-                  Light is waiting on the other side.
+                  A brighter, fuller life is within your reach.
                 </p>
               </div>
 
@@ -312,17 +311,18 @@ export default function Home() {
                   className="text-3xl sm:text-4xl font-semibold text-stone-900 mb-6 leading-snug"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
-                  You&apos;ve Tried.
+                  You&apos;ve Searched.
                   <br />
-                  You&apos;ve Fought.
+                  You&apos;ve Persevered.
                   <br />
-                  <span className="text-amber-700">You Deserve More.</span>
+                  <span className="text-amber-700">You Deserve Better.</span>
                 </h2>
                 <div className="space-y-4 text-stone-600 leading-relaxed text-base">
                   <p>
                     If you&apos;ve been through medications, therapy, or other
-                    treatments and still find yourself weighed down by
-                    depression — you&apos;re not broken, and you&apos;re not alone.
+                    treatments and still haven&apos;t found lasting relief —
+                    that&apos;s not a reflection of you. It&apos;s a signal that
+                    you need a different kind of care.
                   </p>
                   <p>
                     Treatment-resistant depression is real. It affects many
@@ -389,9 +389,10 @@ export default function Home() {
               >
                 I&apos;ve watched patients walk through my door having tried
                 everything — medication after medication, therapy after therapy
-                — still feeling completely alone in their illness. Every single
-                one of them deserved better than what they&apos;d received.
-                That&apos;s exactly why I built this practice.
+                — still not finding the lasting relief they deserved. Every
+                single one of them was capable of recovery. They simply needed
+                a more thorough, more personal approach. That&apos;s exactly
+                why I built this practice.
               </p>
               <div className="mt-8 pt-6 border-t border-amber-100">
                 <p className="text-amber-700 font-semibold">Dr. Ankit Parmar</p>
@@ -687,8 +688,8 @@ export default function Home() {
               style={{ fontFamily: "var(--font-playfair)" }}
               data-animate
             >
-              Because life on the other side of depression is{" "}
-              <span className="text-amber-700 italic">worth fighting for.</span>
+              Because a fuller, brighter life is{" "}
+              <span className="text-amber-700 italic">within your reach.</span>
             </p>
             <div className="grid grid-cols-3 gap-4">
               {[
