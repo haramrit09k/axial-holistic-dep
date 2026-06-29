@@ -163,9 +163,9 @@ export default function Home() {
               className="animate-fade-up-1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-white leading-tight mb-8"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Where Cutting-Edge Care
+              Holistic Care for
               <br />
-              <span className="text-amber-300">Meets Holistic Healing.</span>
+              <span className="text-amber-300">Chronic Depression.</span>
             </h1>
             <p className="animate-fade-up-2 text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed mb-10">
               Deeply personalized, integrative care for people living with

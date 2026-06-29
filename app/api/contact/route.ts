@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: "Name and phone are required." }, { status: 400 });
   }
 
-  const clinicEmail = process.env.CONTACT_EMAIL ?? "dr.parmar@axialholistic.com";
+  const clinicEmail = process.env.CONTACT_EMAIL ?? "practice@axialtms.com";
   const fromAddress = "Axial Holistic Depression Clinic <onboarding@resend.dev>";
 
   // Notify Dr. Parmar
