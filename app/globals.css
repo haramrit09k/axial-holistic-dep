@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fffbf5;
+  --foreground: #1c1412;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.9s ease-out forwards;
+}
+
+.animate-fade-up-1 {
+  animation: fadeUp 0.9s ease-out 0.15s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-2 {
+  animation: fadeUp 0.9s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-3 {
+  animation: fadeUp 0.9s ease-out 0.45s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-4 {
+  animation: fadeUp 0.9s ease-out 0.6s forwards;
+  opacity: 0;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Scroll-triggered entrance animations — only active after JS initialises */
+html.js-anim [data-animate] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+html.js-anim [data-animate].in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+html.js-anim [data-animate][data-delay="100"] { transition-delay: 0.1s; }
+html.js-anim [data-animate][data-delay="200"] { transition-delay: 0.2s; }
+html.js-anim [data-animate][data-delay="300"] { transition-delay: 0.3s; }
+html.js-anim [data-animate][data-delay="400"] { transition-delay: 0.4s; }
