@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
 
   // Send patient confirmation if they gave an email
   if (email) {
-    await resend.emails.send({
+    const { error: patientError } = await resend.emails.send({
       from: fromAddress,
       to: email,
       subject: "We received your message — Axial Holistic Depression Clinic",
@@ -73,6 +73,9 @@ export async function POST(request: NextRequest) {
         `Dr. Ankit Parmar & the Axial Holistic Team`,
       ].join("\n"),
     });
+    if (patientError) {
+      console.error("Resend error (patient confirmation):", patientError);
+    }
   }
 
   return Response.json({ ok: true });
