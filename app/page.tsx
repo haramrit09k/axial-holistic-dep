@@ -11,17 +11,17 @@ export default function Home() {
 
   const testimonials = [
     {
-      name: "Hannah Arey",
+      name: "H.A.",
       stars: 5,
       text: "Dr. Parmar is very kind, patient, professional, and understanding. I can tell he truly cares about his patients. Trusting someone with your mental health is a hard thing to do, but his demeanor makes it very easy to talk about your struggles.",
     },
     {
-      name: "Mark Cepeda",
+      name: "M.C.",
       stars: 5,
       text: "Over the last 4 months of ups and downs, this doctor has been navigating the complexities of my son's mental health issues. I am forever grateful and am blessed that this is who we ended up with as our Dr. for my child.",
     },
     {
-      name: "Celina Navarro",
+      name: "C.N.",
       stars: 5,
       text: "I am eternally grateful for having found such a professional psychiatrist and above all a great human being! Highly recommend, thanks Dr. Parmar, for your attention to my son!",
     },
@@ -331,7 +331,7 @@ export default function Home() {
                     what they&apos;ve received before.
                   </p>
                   <p>
-                    That&apos;s exactly what we do. We work with people ages 12
+                    That&apos;s exactly what we do. We work with people ages 18
                     and above who haven&apos;t found lasting relief, and we
                     build a path forward tailored entirely to them.
                   </p>
@@ -867,6 +867,15 @@ export default function Home() {
                       ),
                       label: "Email",
                       value: "treatdepression@axialtms.com",
+                    },
+                    {
+                      icon: (
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" /><line x1="1" y1="1" x2="23" y2="23" />
+                        </svg>
+                      ),
+                      label: "Fax",
+                      value: "659-901-1257",
                     },
                     {
                       icon: (
