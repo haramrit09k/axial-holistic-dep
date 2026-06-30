@@ -42,7 +42,22 @@ function wrapper(content: string) {
 </html>`;
 }
 
+function calendarUrl(name: string, phone: string, email: string) {
+  // Schedule for tomorrow 9am–9:30am Central (UTC-5)
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setUTCHours(14, 0, 0, 0);
+  const end = new Date(tomorrow);
+  end.setUTCMinutes(30);
+  const fmt = (d: Date) => d.toISOString().replace(/[-:.]/g, "").slice(0, 15) + "Z";
+  const text = encodeURIComponent(`Call ${name} — New Patient`);
+  const details = encodeURIComponent(`Phone: ${phone}\nEmail: ${email || "not provided"}\n\nNew patient inquiry from Axial Holistic Depression Clinic website.`);
+  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&details=${details}&dates=${fmt(tomorrow)}/${fmt(end)}`;
+}
+
 function clinicHtml(name: string, phone: string, email: string, message: string) {
+  const telLink = `tel:+1${phone.replace(/\D/g, "")}`;
+  const gcalLink = calendarUrl(name, phone, email);
   return wrapper(`
     <tr>
       <td style="padding:36px 40px 28px;">
@@ -54,7 +69,22 @@ function clinicHtml(name: string, phone: string, email: string, message: string)
           ${row("Email", email || "Not provided")}
           ${row("Message", message || "—", true)}
         </table>
-        <p style="margin:28px 0 0;color:#57534e;font-size:14px;line-height:1.6;font-family:Arial,sans-serif;">Please call them at your earliest convenience.</p>
+
+        <!-- Action buttons -->
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:28px;">
+          <tr>
+            <td width="48%" style="padding-right:8px;">
+              <a href="${telLink}" style="display:block;background:#b45309;color:#ffffff;text-align:center;padding:14px 20px;border-radius:10px;font-size:15px;font-family:Arial,sans-serif;font-weight:bold;text-decoration:none;">
+                📞 Call ${name}
+              </a>
+            </td>
+            <td width="48%" style="padding-left:8px;">
+              <a href="${gcalLink}" style="display:block;background:#fffbf5;color:#92400e;text-align:center;padding:14px 20px;border-radius:10px;font-size:15px;font-family:Arial,sans-serif;font-weight:bold;text-decoration:none;border:2px solid #fcd34d;">
+                📅 Add to Calendar
+              </a>
+            </td>
+          </tr>
+        </table>
       </td>
     </tr>
   `);
