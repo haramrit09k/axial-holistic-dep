@@ -857,6 +857,7 @@ export default function Home() {
                       ),
                       label: "Phone",
                       value: "972-478-0152",
+                      link: "tel:+19724780152",
                     },
                     {
                       icon: (
@@ -887,14 +888,18 @@ export default function Home() {
                       label: "Location",
                       value: "6730 Horizon Rd, STE C, Rockwall, TX 75032",
                     },
-                  ].map(({ icon, label, value }) => (
+                  ].map(({ icon, label, value, link }: { icon: React.ReactNode; label: string; value: string; link?: string }) => (
                     <div key={label} className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-xl bg-stone-800 flex items-center justify-center text-amber-400 flex-shrink-0">
                         {icon}
                       </div>
                       <div>
                         <p className="text-stone-500 text-xs uppercase tracking-wider mb-0.5">{label}</p>
-                        <p className="text-stone-300 text-sm">{value}</p>
+                        {link ? (
+                          <a href={link} className="text-stone-300 text-sm hover:text-amber-400 transition-colors">{value}</a>
+                        ) : (
+                          <p className="text-stone-300 text-sm">{value}</p>
+                        )}
                       </div>
                     </div>
                   ))}
