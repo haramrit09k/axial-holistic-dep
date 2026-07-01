@@ -167,9 +167,12 @@ export default function Home() {
               <br />
               <span className="text-amber-300">Chronic Depression.</span>
             </h1>
-            <p className="animate-fade-up-2 text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed mb-10">
+            <p className="animate-fade-up-2 text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed mb-4">
               Deeply personalized, integrative care for people living with
               persistent depression — so you can reclaim the life you deserve.
+            </p>
+            <p className="animate-fade-up-2 text-sm text-amber-400/80 tracking-wide mb-8">
+              Serving Rockwall, TX · Rowlett · Wylie · Heath · Greater DFW
             </p>
             <div className="animate-fade-up-3 flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -331,15 +334,16 @@ export default function Home() {
                     what they&apos;ve received before.
                   </p>
                   <p>
-                    That&apos;s exactly what we do. We work with people ages 18
-                    and above who haven&apos;t found lasting relief, and we
-                    build a path forward tailored entirely to them.
+                    That&apos;s exactly what we do. We work with adults 18 and
+                    above across Rockwall, TX and the greater North Texas area
+                    who haven&apos;t found lasting relief, and we build a path
+                    forward tailored entirely to them.
                   </p>
                 </div>
 
                 <div className="mt-8 grid grid-cols-2 gap-4">
                   {[
-                    { num: "12+", label: "Ages Served" },
+                    { num: "18+", label: "Ages Served" },
                     { num: "10+", label: "Years of Experience" },
                     { num: "5,000+", label: "Patients Helped" },
                     { num: "3×", label: "Board-Certified Physician" },
@@ -430,9 +434,10 @@ export default function Home() {
                     patients toward both recovery and long-term wellness.
                   </p>
                   <p>
-                    We treat patients of all ages starting from 12, and we work
-                    closely with most major insurance providers including
-                    Medicare to make care as accessible as possible.
+                    We treat adults 18 and above, and we work closely with most
+                    major insurance providers including Medicare to make
+                    high-quality psychiatric care as accessible as possible
+                    across Rockwall, TX and the Dallas–Fort Worth area.
                   </p>
                 </div>
 
@@ -804,6 +809,106 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ─── SERVICE AREA ─── */}
+        <section className="py-16 px-6 bg-amber-50">
+          <div className="max-w-4xl mx-auto text-center" data-animate>
+            <p className="text-amber-600 text-sm tracking-widest uppercase font-medium mb-4">
+              Where We Serve
+            </p>
+            <h2
+              className="text-2xl sm:text-3xl font-semibold text-stone-900 mb-4"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Proudly Serving Rockwall, TX and the Greater DFW Area
+            </h2>
+            <p className="text-stone-500 leading-relaxed mb-8 max-w-2xl mx-auto">
+              Our clinic is located in Rockwall, Texas — just east of Dallas on I-30 — making us accessible to patients from across the metroplex seeking specialized depression care.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 text-sm">
+              {[
+                "Rockwall, TX",
+                "Rowlett, TX",
+                "Wylie, TX",
+                "Heath, TX",
+                "Fate, TX",
+                "Royse City, TX",
+                "Garland, TX",
+                "Mesquite, TX",
+                "Forney, TX",
+                "Dallas, TX",
+              ].map((city) => (
+                <span
+                  key={city}
+                  className="bg-white border border-amber-200 text-amber-800 px-4 py-2 rounded-full font-medium"
+                >
+                  {city}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─── FAQ ─── */}
+        <section id="faq" className="py-24 px-6 bg-[#fffbf5]">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-14" data-animate>
+              <p className="text-amber-600 text-sm tracking-widest uppercase font-medium mb-4">
+                Common Questions
+              </p>
+              <h2
+                className="text-3xl sm:text-4xl font-semibold text-stone-900"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                You Have Questions. We Have Answers.
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              {[
+                {
+                  q: "Is there a psychiatrist in Rockwall, TX who specializes in treatment-resistant depression?",
+                  a: "Yes. Dr. Ankit Parmar at Axial Holistic Depression Clinic (6730 Horizon Rd, STE C, Rockwall, TX 75032) specializes in holistic, integrative care for people who have tried other treatments without lasting success.",
+                },
+                {
+                  q: "Does Dr. Parmar accept Medicare and major insurance?",
+                  a: "Yes. We accept Medicare, Aetna, Blue Cross Blue Shield, Cigna, UnitedHealthcare, and most other major insurance providers. Call us at 972-478-0152 to verify your specific plan.",
+                },
+                {
+                  q: "What is treatment-resistant depression?",
+                  a: "Treatment-resistant depression is when someone does not respond adequately to two or more antidepressant treatments tried at proper doses. It is far more common than most people realize — and specialized, holistic care can open doors that standard approaches miss.",
+                },
+                {
+                  q: "Which cities near Rockwall do you serve?",
+                  a: "We primarily serve Rockwall and surrounding communities including Rowlett, Wylie, Heath, Fate, Royse City, Garland, Mesquite, Forney, and the broader Dallas–Fort Worth metroplex.",
+                },
+                {
+                  q: "What makes Dr. Parmar's approach different?",
+                  a: "Dr. Parmar is triple board-certified in General Psychiatry, Child & Adolescent Psychiatry, and Forensic Psychiatry — with over 10 years of experience and 5,000+ patients helped. He takes a whole-person approach, exploring biological, psychological, and lifestyle factors to build a plan tailored to you specifically.",
+                },
+                {
+                  q: "How do I schedule an appointment?",
+                  a: "Call us at 972-478-0152, email practice@axialtms.com, or fill out the contact form below. We are open Monday through Friday, 9am–5pm, and will respond within one business day.",
+                },
+              ].map(({ q, a }, i) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-2xl p-6 border border-amber-100 shadow-sm"
+                  data-animate
+                  data-delay={String(i * 80)}
+                >
+                  <h3
+                    className="text-stone-900 font-semibold text-base mb-3"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    {q}
+                  </h3>
+                  <p className="text-stone-500 text-sm leading-relaxed">{a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ─── WARM BANNER ─── */}
         <section className="py-20 px-6 bg-gradient-to-r from-amber-500 to-orange-400">
           <div className="max-w-3xl mx-auto text-center" data-animate>
@@ -1016,6 +1121,7 @@ export default function Home() {
                     ["Stories", "#testimonials"],
                     ["Our Approach", "#approach"],
                     ["What to Expect", "#what-to-expect"],
+                    ["FAQ", "#faq"],
                     ["Contact", "#contact"],
                   ].map(([label, href]) => (
                     <a key={label} href={href} className="block text-stone-500 hover:text-amber-400 transition-colors">
