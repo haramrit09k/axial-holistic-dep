@@ -167,9 +167,12 @@ export default function Home() {
               <br />
               <span className="text-amber-300">Chronic Depression.</span>
             </h1>
-            <p className="animate-fade-up-2 text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed mb-10">
+            <p className="animate-fade-up-2 text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed mb-4">
               Deeply personalized, integrative care for people living with
               persistent depression — so you can reclaim the life you deserve.
+            </p>
+            <p className="animate-fade-up-2 text-sm text-amber-400/80 tracking-wide mb-8">
+              Serving Rockwall, TX · Rowlett · Wylie · Heath · Greater DFW
             </p>
             <div className="animate-fade-up-3 flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -225,17 +228,17 @@ export default function Home() {
                 style={{ fontFamily: "var(--font-playfair)" }}
                 data-animate
               >
-                Have you tried medication after medication — each one promising
-                to be &ldquo;the one&rdquo; — only to find yourself back at
-                square one?
+                Have you tried medication after medication, finding that they
+                only take you part of the way?
               </p>
               <p
                 className="text-xl sm:text-2xl text-stone-400 leading-relaxed"
                 style={{ fontFamily: "var(--font-playfair)" }}
                 data-animate
               >
-                Are you quietly starting to wonder if this is just&hellip; how
-                life will always feel?
+                Are you managing annoying or concerning side effects — or
+                quietly wondering why your prescription leaves you feeling{" "}
+                <span className="italic">not quite like yourself</span>?
               </p>
               <p
                 className="text-2xl sm:text-3xl text-stone-200 leading-relaxed"
@@ -244,7 +247,7 @@ export default function Home() {
               >
                 Have you started to believe you&apos;re the problem — when
                 really, you just haven&apos;t found the{" "}
-                <span className="italic">right kind of care</span>?
+                <span className="italic">right combination of care</span>?
               </p>
             </div>
 
@@ -254,14 +257,21 @@ export default function Home() {
                 Here&apos;s what we know
               </p>
               <p
+                className="text-xl sm:text-2xl text-stone-300 leading-relaxed mb-6"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                Standard treatments are a vital tool that help millions of people.
+                But for many, medications alone aren&apos;t enough.
+              </p>
+              <p
                 className="text-3xl sm:text-4xl font-semibold leading-snug"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
                 <span className="text-amber-400">
-                  Treatment-resistant depression is real.
+                  Treatment-resistant depression is real —
                 </span>
                 <br />
-                <span className="text-white">And so is the path through it.</span>
+                <span className="text-white">and so is a comprehensive path through it.</span>
               </p>
             </div>
           </div>
@@ -277,7 +287,7 @@ export default function Home() {
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
                 &ldquo;We believe every person with treatment-resistant depression
-                deserves a care team that{" "}
+                deserves a care team that looks at the whole picture and{" "}
                 <span className="text-amber-700 italic">never gives up.</span>
                 &rdquo;
               </p>
@@ -315,31 +325,23 @@ export default function Home() {
                   <br />
                   You&apos;ve Persevered.
                   <br />
-                  <span className="text-amber-700">You Deserve Better.</span>
+                  <span className="text-amber-700">You Deserve More.</span>
                 </h2>
                 <div className="space-y-4 text-stone-600 leading-relaxed text-base">
                   <p>
-                    If you&apos;ve been through medications, therapy, or other
-                    treatments and still haven&apos;t found lasting relief —
-                    that&apos;s not a reflection of you. It&apos;s a signal that
-                    you need a different kind of care.
-                  </p>
-                  <p>
-                    Treatment-resistant depression is real. It affects many
-                    people who simply need a different kind of care — a more
-                    thorough, more personalized, more holistic approach than
-                    what they&apos;ve received before.
-                  </p>
-                  <p>
-                    That&apos;s exactly what we do. We work with people ages 18
-                    and above who haven&apos;t found lasting relief, and we
-                    build a path forward tailored entirely to them.
+                    If you have tried multiple medications or therapies and still
+                    haven&apos;t found lasting, vibrant relief, that is not a
+                    reflection of you. It is simply a biological signal that your
+                    depression requires a different, more multifaceted layer of
+                    care. That&apos;s exactly what we do — we work with adults 18
+                    and above across Rockwall, TX and the greater North Texas area
+                    to build a path forward tailored entirely to you.
                   </p>
                 </div>
 
                 <div className="mt-8 grid grid-cols-2 gap-4">
                   {[
-                    { num: "12+", label: "Ages Served" },
+                    { num: "18+", label: "Ages Served" },
                     { num: "10+", label: "Years of Experience" },
                     { num: "5,000+", label: "Patients Helped" },
                     { num: "3×", label: "Board-Certified Physician" },
@@ -387,12 +389,15 @@ export default function Home() {
                 className="text-xl sm:text-2xl text-stone-700 leading-relaxed italic"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
-                I&apos;ve watched patients walk through my door having tried
-                everything — medication after medication, therapy after therapy
-                — still not finding the lasting relief they deserved. Every
-                single one of them was capable of recovery. They simply needed
-                a more thorough, more personal approach. That&apos;s exactly
-                why I built this practice.
+                In my years of practice, I&apos;ve seen how invaluable
+                traditional treatments can be. Yet, I have also met many
+                patients who — despite trying various medications and therapies
+                — still haven&apos;t found the full, lasting relief they
+                deserve. True recovery isn&apos;t about discarding conventional
+                medicine; it&apos;s about looking at the entire picture. By
+                combining advanced, innovative care like TMS with holistic
+                wellness strategies, we bridge the gap where medications alone
+                might fall short.
               </p>
               <div className="mt-8 pt-6 border-t border-amber-100">
                 <p className="text-amber-700 font-semibold">Dr. Ankit Parmar</p>
@@ -419,8 +424,9 @@ export default function Home() {
                     Dr. Ankit Parmar is a triple board-certified psychiatrist in
                     General Psychiatry, Child &amp; Adolescent Psychiatry, and
                     Forensic Psychiatry. With over 10 years of experience, he
-                    has helped more than 5,000 patients overcome depression and
-                    reclaim their lives.
+                    blends standard psychiatric expertise with holistic and
+                    advanced modalities to guide patients toward true,
+                    long-term wellness.
                   </p>
                   <p>
                     He completed his residency at Texas Tech University Health
@@ -430,9 +436,10 @@ export default function Home() {
                     patients toward both recovery and long-term wellness.
                   </p>
                   <p>
-                    We treat patients of all ages starting from 12, and we work
-                    closely with most major insurance providers including
-                    Medicare to make care as accessible as possible.
+                    We treat adults 18 and above, and we work closely with most
+                    major insurance providers including Medicare to make
+                    high-quality psychiatric care as accessible as possible
+                    across Rockwall, TX and the Dallas–Fort Worth area.
                   </p>
                 </div>
 
@@ -575,12 +582,14 @@ export default function Home() {
                 Holistic. Personal. Yours.
               </h2>
               <p className="text-amber-300 text-lg italic mb-3 max-w-xl mx-auto" style={{ fontFamily: "var(--font-playfair)" }}>
-                What if the reason other treatments haven&apos;t worked is that
-                none of them were actually built for you?
+                What if the missing piece to your recovery isn&apos;t a new
+                prescription, but a care plan truly integrated for your unique
+                biology?
               </p>
               <p className="text-stone-400 max-w-xl mx-auto">
-                No two people experience depression the same way. Your care plan
-                shouldn&apos;t be the same either.
+                Medications can be an excellent foundation — but your care plan
+                should look at the whole picture. We don&apos;t replace your
+                care; we elevate it.
               </p>
             </div>
 
@@ -589,7 +598,7 @@ export default function Home() {
                 {
                   step: "01",
                   title: "We Listen First",
-                  body: "We start with you — your history, your life, what you've already tried, and what matters most to you. Nothing is assumed.",
+                  body: "We dive deep into your history, your experiences with past treatments, and how you feel day to day. Nothing is assumed.",
                   icon: (
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <path d="M12 2a10 10 0 0 1 10 10c0 3.87-2.19 7.22-5.4 8.9L15 22H9l-1.6-1.1A10 10 0 0 1 2 12 10 10 0 0 1 12 2z" />
@@ -600,7 +609,7 @@ export default function Home() {
                 {
                   step: "02",
                   title: "We Look at the Whole Picture",
-                  body: "Depression is rarely just one thing. We explore biological, psychological, and lifestyle factors to understand what's driving yours.",
+                  body: "We evaluate your physical wellness, lifestyle, and brain health — not just your symptoms.",
                   icon: (
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <circle cx="12" cy="12" r="10" />
@@ -610,8 +619,8 @@ export default function Home() {
                 },
                 {
                   step: "03",
-                  title: "We Build Your Plan",
-                  body: "Together, we design a treatment approach built around your unique situation — not a protocol, not a one-size-fits-all answer.",
+                  title: "We Build Your Plan Together",
+                  body: "We combine standard psychiatry with advanced treatments like TMS and holistic strategies tailored specifically to you.",
                   icon: (
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <path d="M9 11l3 3L22 4" />
@@ -622,7 +631,7 @@ export default function Home() {
                 {
                   step: "04",
                   title: "We Walk With You",
-                  body: "Recovery is a journey, not a single appointment. We stay by your side — adjusting, supporting, and celebrating every step forward.",
+                  body: "Recovery is a partnership. We closely monitor your progress, minimize bothersome side effects, and adjust your care every step of the way.",
                   icon: (
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -800,6 +809,106 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── SERVICE AREA ─── */}
+        <section className="py-16 px-6 bg-amber-50">
+          <div className="max-w-4xl mx-auto text-center" data-animate>
+            <p className="text-amber-600 text-sm tracking-widest uppercase font-medium mb-4">
+              Where We Serve
+            </p>
+            <h2
+              className="text-2xl sm:text-3xl font-semibold text-stone-900 mb-4"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Proudly Serving Rockwall, TX and the Greater DFW Area
+            </h2>
+            <p className="text-stone-500 leading-relaxed mb-8 max-w-2xl mx-auto">
+              Our clinic is located in Rockwall, Texas — just east of Dallas on I-30 — making us accessible to patients from across the metroplex seeking specialized depression care.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 text-sm">
+              {[
+                "Rockwall, TX",
+                "Rowlett, TX",
+                "Wylie, TX",
+                "Heath, TX",
+                "Fate, TX",
+                "Royse City, TX",
+                "Garland, TX",
+                "Mesquite, TX",
+                "Forney, TX",
+                "Dallas, TX",
+              ].map((city) => (
+                <span
+                  key={city}
+                  className="bg-white border border-amber-200 text-amber-800 px-4 py-2 rounded-full font-medium"
+                >
+                  {city}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─── FAQ ─── */}
+        <section id="faq" className="py-24 px-6 bg-[#fffbf5]">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-14" data-animate>
+              <p className="text-amber-600 text-sm tracking-widest uppercase font-medium mb-4">
+                Common Questions
+              </p>
+              <h2
+                className="text-3xl sm:text-4xl font-semibold text-stone-900"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                You Have Questions. We Have Answers.
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              {[
+                {
+                  q: "Is there a psychiatrist in Rockwall, TX who specializes in treatment-resistant depression?",
+                  a: "Yes. Dr. Ankit Parmar at Axial Holistic Depression Clinic (6730 Horizon Rd, STE C, Rockwall, TX 75032) specializes in holistic, integrative care for people who have tried other treatments without lasting success.",
+                },
+                {
+                  q: "Does Dr. Parmar accept Medicare and major insurance?",
+                  a: "Yes. We accept Medicare, Aetna, Blue Cross Blue Shield, Cigna, UnitedHealthcare, and most other major insurance providers. Call us at 972-478-0152 to verify your specific plan.",
+                },
+                {
+                  q: "What is treatment-resistant depression?",
+                  a: "Treatment-resistant depression is when someone does not respond adequately to two or more antidepressant treatments tried at proper doses. It is far more common than most people realize — and specialized, holistic care can open doors that standard approaches miss.",
+                },
+                {
+                  q: "Which cities near Rockwall do you serve?",
+                  a: "We primarily serve Rockwall and surrounding communities including Rowlett, Wylie, Heath, Fate, Royse City, Garland, Mesquite, Forney, and the broader Dallas–Fort Worth metroplex.",
+                },
+                {
+                  q: "What makes Dr. Parmar's approach different?",
+                  a: "Dr. Parmar is triple board-certified in General Psychiatry, Child & Adolescent Psychiatry, and Forensic Psychiatry — with over 10 years of experience and 5,000+ patients helped. He takes a whole-person approach, exploring biological, psychological, and lifestyle factors to build a plan tailored to you specifically.",
+                },
+                {
+                  q: "How do I schedule an appointment?",
+                  a: "Call us at 972-478-0152, email practice@axialtms.com, or fill out the contact form below. We are open Monday through Friday, 9am–5pm, and will respond within one business day.",
+                },
+              ].map(({ q, a }, i) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-2xl p-6 border border-amber-100 shadow-sm"
+                  data-animate
+                  data-delay={String(i * 80)}
+                >
+                  <h3
+                    className="text-stone-900 font-semibold text-base mb-3"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    {q}
+                  </h3>
+                  <p className="text-stone-500 text-sm leading-relaxed">{a}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -1016,6 +1125,7 @@ export default function Home() {
                     ["Stories", "#testimonials"],
                     ["Our Approach", "#approach"],
                     ["What to Expect", "#what-to-expect"],
+                    ["FAQ", "#faq"],
                     ["Contact", "#contact"],
                   ].map(([label, href]) => (
                     <a key={label} href={href} className="block text-stone-500 hover:text-amber-400 transition-colors">
