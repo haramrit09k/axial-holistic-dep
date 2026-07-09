@@ -111,6 +111,7 @@ export default function Home() {
             <a href="#doctor" className="hover:text-amber-800 transition-colors">Dr. Ankit Parmar</a>
             <a href="#testimonials" className="hover:text-amber-800 transition-colors">Stories</a>
             <a href="#approach" className="hover:text-amber-800 transition-colors">Our Approach</a>
+            <a href="#tms" className="hover:text-amber-800 transition-colors">TMS</a>
             <a href="#contact" className="bg-amber-600 text-white px-5 py-2 rounded-full text-sm hover:bg-amber-700 transition-colors">
               Book Appointment
             </a>
@@ -130,6 +131,7 @@ export default function Home() {
             <a href="#doctor" onClick={() => setMenuOpen(false)}>Dr. Ankit Parmar</a>
             <a href="#testimonials" onClick={() => setMenuOpen(false)}>Stories</a>
             <a href="#approach" onClick={() => setMenuOpen(false)}>Our Approach</a>
+            <a href="#tms" onClick={() => setMenuOpen(false)}>TMS</a>
             <a href="#contact" className="bg-amber-600 text-white px-5 py-2 rounded-full text-center" onClick={() => setMenuOpen(false)}>
               Book Appointment
             </a>
@@ -656,6 +658,126 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ─── TMS THERAPY ─── */}
+        <section id="tms" className="py-24 px-6 bg-stone-950">
+          <div className="max-w-6xl mx-auto">
+
+            {/* Header */}
+            <div className="text-center mb-16" data-animate>
+              <p className="text-amber-400 text-sm tracking-widest uppercase font-medium mb-4">
+                TMS Therapy
+              </p>
+              <h2
+                className="text-3xl sm:text-4xl font-semibold text-white mb-6"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                When You Need More Than Medication,
+                <br />
+                We Safely Wake Up the Brain.
+              </h2>
+            </div>
+
+            {/* Intro — text left, diagram placeholder right */}
+            <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+              <div className="space-y-5" data-animate>
+                <p className="text-stone-300 leading-relaxed text-lg">
+                  If you have tried multiple antidepressants without finding lasting relief, the issue isn&apos;t your willpower — it&apos;s your brain&apos;s biological circuitry. TMS is an FDA-cleared, non-invasive technology designed precisely for treatment-resistant depression.
+                </p>
+                <p className="text-stone-400 leading-relaxed">
+                  Unlike daily medications that travel through your entire system, TMS acts precisely where it&apos;s needed — delivering targeted micro-pulses directly to the root source of your symptoms.
+                </p>
+              </div>
+              <div className="rounded-2xl overflow-hidden" data-animate data-delay="100">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/tms-diagram.png"
+                  alt="TMS therapy diagram showing magnetic coil delivering pulses to the prefrontal cortex"
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+
+            {/* 3-column step cards */}
+            <div className="grid sm:grid-cols-3 gap-6 mb-12">
+              {[
+                {
+                  step: "01",
+                  title: "The Target",
+                  body: "In chronic depression, the prefrontal cortex — the area responsible for mood regulation — becomes underactive and sluggish.",
+                  icon: (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="3" />
+                      <circle cx="12" cy="12" r="7" />
+                      <circle cx="12" cy="12" r="11" />
+                    </svg>
+                  ),
+                },
+                {
+                  step: "02",
+                  title: "The Pulse",
+                  body: "While you sit comfortably, a specialized magnetic coil gently delivers focused micro-pulses — similar in strength to an MRI — safely through the skull.",
+                  icon: (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                    </svg>
+                  ),
+                },
+                {
+                  step: "03",
+                  title: "The Awakening",
+                  body: "These magnetic pulses stimulate inactive nerve cells. Over time, neurons resume healthy firing patterns, lifting the heavy fog of depression.",
+                  icon: (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M12 2v6M12 16v6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24" />
+                    </svg>
+                  ),
+                },
+              ].map(({ step, title, body, icon }, i) => (
+                <div
+                  key={step}
+                  className="bg-stone-800 rounded-2xl p-6 border border-stone-700 hover:border-amber-600/50 transition-colors group"
+                  data-animate
+                  data-delay={String(i * 100)}
+                >
+                  <div className="text-amber-400 mb-4 group-hover:text-amber-300 transition-colors">{icon}</div>
+                  <p className="text-amber-600 text-xs font-bold tracking-wider mb-2">{step}</p>
+                  <h3 className="text-white font-semibold text-lg mb-3" style={{ fontFamily: "var(--font-playfair)" }}>
+                    {title}
+                  </h3>
+                  <p className="text-stone-400 text-sm leading-relaxed">{body}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Callout box */}
+            <div className="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-8 mb-10" data-animate>
+              <h3
+                className="text-amber-300 text-xl font-semibold mb-3"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                The Holistic Advantage: No Systemic Side Effects
+              </h3>
+              <p className="text-stone-300 leading-relaxed">
+                Because TMS is a localized physical treatment rather than a chemical one, it requires no anesthesia, carries no downtime, and produces zero systemic side effects — no chemical weight gain, no nausea, no emotional blunting. Patients can read, stream a show, and drive themselves to and from their 20-minute sessions.
+              </p>
+            </div>
+
+            {/* Insurance note + CTA */}
+            <div className="text-center" data-animate>
+              <p className="text-stone-400 mb-6">
+                TMS is covered by Medicare and most major commercial insurance providers.
+              </p>
+              <a
+                href="#contact"
+                className="inline-block bg-amber-500 hover:bg-amber-400 text-white font-semibold px-8 py-4 rounded-full transition-colors"
+              >
+                Verify Your TMS Coverage →
+              </a>
+            </div>
+
           </div>
         </section>
 
