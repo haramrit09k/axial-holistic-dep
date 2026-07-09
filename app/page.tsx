@@ -690,22 +690,13 @@ export default function Home() {
                   Unlike daily medications that travel through your entire system, TMS acts precisely where it&apos;s needed — delivering targeted micro-pulses directly to the root source of your symptoms.
                 </p>
               </div>
-              <div
-                className="rounded-2xl border border-amber-500/20 bg-stone-900/60 flex flex-col items-center justify-center py-16 px-8 text-center"
-                data-animate
-                data-delay="100"
-              >
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" className="mb-4 opacity-40" aria-hidden="true">
-                  <circle cx="32" cy="32" r="30" stroke="#d97706" strokeWidth="1.5" />
-                  <path d="M32 12 C20 12 14 22 14 32 C14 42 20 52 32 52" stroke="#d97706" strokeWidth="1.5" strokeLinecap="round" />
-                  <path d="M32 12 C44 12 50 22 50 32 C50 42 44 52 32 52" stroke="#d97706" strokeWidth="1.5" strokeLinecap="round" />
-                  <path d="M20 22 Q32 14 44 22" stroke="#fbbf24" strokeWidth="1.5" strokeLinecap="round" />
-                  <path d="M22 18 Q32 10 42 18" stroke="#fcd34d" strokeWidth="1" strokeLinecap="round" strokeDasharray="3 3" />
-                  <path d="M25 15 Q32 8 39 15" stroke="#fde68a" strokeWidth="1" strokeLinecap="round" strokeDasharray="2 4" />
-                  <circle cx="32" cy="35" r="5" fill="#d97706" fillOpacity="0.3" stroke="#d97706" strokeWidth="1" />
-                </svg>
-                <p className="text-stone-500 text-sm">Diagram coming soon</p>
-                <p className="text-stone-600 text-xs mt-1">Illustration of TMS targeting the prefrontal cortex</p>
+              <div className="rounded-2xl overflow-hidden" data-animate data-delay="100">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/tms-diagram.png"
+                  alt="TMS therapy diagram showing magnetic coil delivering pulses to the prefrontal cortex"
+                  className="w-full h-auto"
+                />
               </div>
             </div>
 
