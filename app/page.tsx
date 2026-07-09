@@ -693,8 +693,8 @@ export default function Home() {
               <div className="rounded-2xl overflow-hidden" data-animate data-delay="100">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/tms-diagram.png"
-                  alt="TMS therapy diagram showing magnetic coil delivering pulses to the prefrontal cortex"
+                  src="/tms-patient.png"
+                  alt="Patient smiling during a TMS therapy session at Axial Holistic Depression Clinic"
                   className="w-full h-auto"
                 />
               </div>
