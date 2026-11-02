@@ -73,16 +73,11 @@ const schema = {
   medicalSpecialty: "Psychiatry",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "6730 Horizon Rd, STE C",
+    streetAddress: "1001 N. Goliad St, Bldg B",
     addressLocality: "Rockwall",
     addressRegion: "TX",
-    postalCode: "75032",
+    postalCode: "75087",
     addressCountry: "US",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 32.9310,
-    longitude: -96.4597,
   },
   areaServed: [
     { "@type": "City", name: "Rockwall", containedIn: { "@type": "State", name: "Texas" } },
@@ -120,7 +115,7 @@ const faqSchema = {
       name: "Is there a psychiatrist in Rockwall, TX who specializes in treatment-resistant depression?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Dr. Ankit Parmar at Axial Holistic Depression Clinic in Rockwall, TX specializes in holistic, integrative care for chronic and treatment-resistant depression. The clinic is located at 6730 Horizon Rd, STE C, Rockwall, TX 75032.",
+        text: "Yes. Dr. Ankit Parmar at Axial Holistic Depression Clinic in Rockwall, TX specializes in holistic, integrative care for chronic and treatment-resistant depression. The clinic is located at 1001 N. Goliad St, Bldg B, Rockwall, TX 75087.",
       },
     },
     {
@@ -160,7 +155,7 @@ const faqSchema = {
       name: "How do I make an appointment at Axial Holistic Depression Clinic in Rockwall?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "You can reach us by calling 972-478-0152, emailing practice@axialtms.com, or filling out the contact form on this website. The clinic is located at 6730 Horizon Rd, STE C, Rockwall, TX 75032 and is open Monday through Friday, 9am to 5pm.",
+        text: "You can reach us by calling 972-478-0152, emailing practice@axialtms.com, or filling out the contact form on this website. The clinic is located at 1001 N. Goliad St, Bldg B, Rockwall, TX 75087 and is open Monday through Friday, 9am to 5pm.",
       },
     },
   ],

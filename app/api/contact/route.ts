@@ -30,7 +30,7 @@ function wrapper(content: string) {
         <tr>
           <td style="background:#1c1412;padding:28px 40px;text-align:center;">
             <p style="margin:0 0 6px;color:#a8896a;font-size:12px;font-family:Arial,sans-serif;">Axial Holistic Depression Clinic</p>
-            <p style="margin:0 0 4px;color:#6b5344;font-size:11px;font-family:Arial,sans-serif;">6730 Horizon Rd, STE C, Rockwall, TX 75032</p>
+            <p style="margin:0 0 4px;color:#6b5344;font-size:11px;font-family:Arial,sans-serif;">1001 N. Goliad St, Bldg B, Rockwall, TX 75087</p>
             <p style="margin:0;color:#6b5344;font-size:11px;font-family:Arial,sans-serif;">Phone: 972-478-0152 &nbsp;·&nbsp; Fax: 659-901-1257</p>
           </td>
         </tr>
