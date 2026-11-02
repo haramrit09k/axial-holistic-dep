@@ -8,6 +8,10 @@ export default function Home() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [showStickyBtn, setShowStickyBtn] = useState(false);
+  const [showMovedBanner, setShowMovedBanner] = useState(true);
+
+  const clinicAddress = "1001 N. Goliad St, Bldg B, Rockwall, TX 75087";
+  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(clinicAddress)}`;
 
   const testimonials = [
     {
@@ -97,6 +101,38 @@ export default function Home() {
 
       {/* ─── NAVBAR ─── */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#fffbf5]/90 backdrop-blur-md border-b border-amber-100">
+        {/* ─── "WE'VE MOVED" BANNER — calm teal that contrasts with the amber palette ─── */}
+        {showMovedBanner && (
+          <div role="region" aria-label="Address change notice" className="bg-teal-800 text-teal-50">
+            <div className="max-w-6xl mx-auto px-10 sm:px-12 py-2 relative text-center text-xs sm:text-sm leading-snug">
+              <svg className="inline-block -mt-0.5 mr-1.5 text-teal-200" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <span className="font-semibold">We&rsquo;ve moved!</span>{" "}
+              <span className="hidden sm:inline">Our new address is </span>
+              <span>{clinicAddress}</span>
+              <a
+                href={directionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 whitespace-nowrap underline underline-offset-2 decoration-teal-300 hover:text-white"
+              >
+                Get directions →
+              </a>
+              <button
+                type="button"
+                onClick={() => setShowMovedBanner(false)}
+                aria-label="Dismiss address change notice"
+                className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-full text-teal-200 hover:text-white hover:bg-teal-700 transition-colors"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <path d="M18 6 6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        )}
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <a href="#" className="flex flex-col leading-tight">
             <span className="text-lg font-semibold text-amber-900" style={{ fontFamily: "var(--font-playfair)" }}>
@@ -993,7 +1029,7 @@ export default function Home() {
               {[
                 {
                   q: "Is there a psychiatrist in Rockwall, TX who specializes in treatment-resistant depression?",
-                  a: "Yes. Dr. Ankit Parmar at Axial Holistic Depression Clinic (6730 Horizon Rd, STE C, Rockwall, TX 75032) specializes in holistic, integrative care for people who have tried other treatments without lasting success.",
+                  a: "Yes. Dr. Ankit Parmar at Axial Holistic Depression Clinic (1001 N. Goliad St, Bldg B, Rockwall, TX 75087) specializes in holistic, integrative care for people who have tried other treatments without lasting success.",
                 },
                 {
                   q: "Does Dr. Parmar accept Medicare and major insurance?",
@@ -1117,7 +1153,8 @@ export default function Home() {
                         </svg>
                       ),
                       label: "Location",
-                      value: "6730 Horizon Rd, STE C, Rockwall, TX 75032",
+                      value: clinicAddress,
+                      link: directionsUrl,
                     },
                   ].map(({ icon, label, value, link }: { icon: React.ReactNode; label: string; value: string; link?: string }) => (
                     <div key={label} className="flex items-start gap-4">
