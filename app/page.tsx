@@ -13,6 +13,25 @@ export default function Home() {
   const clinicAddress = "1001 N. Goliad St, Bldg B, Rockwall, TX 75087";
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(clinicAddress)}`;
 
+  // Pre-filled email so patients know what to include (kept free of medical detail — email isn't a secure channel)
+  const clinicEmail = "practice@axialtms.com";
+  const emailSubject = "Appointment Inquiry – Axial Holistic Depression Clinic";
+  const emailBody = [
+    "Hello,",
+    "",
+    "I'm interested in scheduling a consultation with Dr. Ankit Parmar.",
+    "",
+    "Name: ",
+    "Phone: ",
+    "Best time to reach me: ",
+    "Insurance provider: ",
+    "",
+    "(Please don't include detailed medical information over email — we'll discuss everything when we call you.)",
+    "",
+    "Thank you,",
+  ].join("\n");
+  const emailUrl = `mailto:${clinicEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
   const testimonials = [
     {
       name: "H.A.",
@@ -1134,7 +1153,8 @@ export default function Home() {
                         </svg>
                       ),
                       label: "Email",
-                      value: "treatdepression@axialtms.com",
+                      value: clinicEmail,
+                      link: emailUrl,
                     },
                     {
                       icon: (
